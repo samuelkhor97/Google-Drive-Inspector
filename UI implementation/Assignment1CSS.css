@@ -1,0 +1,283 @@
+#mainPageBackground
+{
+    background-attachment: fixed;
+    background-repeat: no-repeat;
+    background-size:cover;
+    background-position: center bottom;
+
+}
+.style
+{
+    position:relative;
+    top:800px;
+    height:800px;
+    background-color: aliceblue;
+    font-size: 36px;
+    text-align:center;
+}
+#mainPageHeader
+{
+    font-weight:600;
+    font-size:30px;
+    color: aliceblue;
+    position:relative;
+    text-align: center;
+    top:30px;
+}
+
+.mainPageTitle
+{
+    font-size:75px;
+    color:floralwhite;
+    position:relative;
+    text-align:center;
+    top:100px;
+}
+
+.logIn
+{
+    position:relative;
+    text-align: center;
+    top:250px;
+    left:700px;
+    display:inline-block;
+    font-size:25px;
+    color:azure;
+    width:100px;
+    height:50px;
+    background-color:cornflowerblue;
+    border:1px solid
+    
+}
+
+.emailPassword
+{
+    font-size:25px;
+    color: aqua;
+    position:relative;
+    
+    left: 600px;
+    top:250px;
+}
+input[type=text]{
+    position:relative;
+    left:50px;
+    width:200px;
+    padding: 12px 20px;
+    margin: 8px 0;
+    display: inline-block;
+    border: 1px solid #ccc;
+    box-sizing: border-box;
+}
+
+input[type=password]{
+    width:200px;
+    padding: 12px 20px;
+    margin: 8px 0;
+    display: inline-block;
+    border: 1px solid #ccc;
+    box-sizing: border-box;
+}
+
+.container
+{
+    position:absolute;
+    left:200px;
+    font-style: italic;
+}
+.images
+{
+    position:center;
+}
+/*-----------------------page2---------------------------------*/
+.Group1 
+{
+    position:relative;
+    text-align: center;
+    top:175px;
+    left:200px;
+    width:200px;
+    height:60px;
+    font-size: 25px;
+    color:floralwhite;
+    background-color:darkslategrey;
+}
+
+.Group2
+{
+    position:relative;
+    text-align: center;
+    top:175px;
+    left:500px;
+    width:200px;
+    height:60px;
+    font-size: 25px;
+    color:floralwhite;
+    background-color:darkslategrey;
+}
+
+.pic1
+{
+    position:relative;
+    left:100px;
+    top:150px;
+}
+
+.pic2
+{
+    position:relative;
+    left:200px;
+    top:150px;
+}
+
+#addPathButton
+{
+    left:450px;
+    bottom:175px;
+    margin-top: 5px;
+    display: block;
+    background-color:azure;
+}
+/*-----------------page3--------------------------------*/
+#projectName
+{
+    font-weight:600;
+    font-size:30px;
+    color:black;
+    position:relative;
+    text-align: center;
+    top:50px;
+    left:-400px;
+}
+
+#uploadButton
+{
+    left:-525px;
+    top :-40px;
+    margin-top: 5px;
+    display: block;
+    background-color:black;
+}
+
+#deleteButton
+{
+    right:-525px;
+    top :-100px;
+    margin-top: 5px;
+    display: block;
+    background-color:black;
+}
+#mainpiechart
+{
+    position:relative;
+    left:800px;
+    top:-50px;
+}
+.maintable {
+    font-family: arial, sans-serif;
+    border-collapse: collapse;
+    position:relative;
+    left:300px;
+    top:-300px;
+}
+.File1 
+{
+    position:relative;
+    text-align: center;
+    top:-100px;
+    left:300px;
+    width:200px;
+    height:60px;
+    font-size: 25px;
+    color:floralwhite;
+    background-color:darkslategrey;
+}
+.File2
+{
+    position:relative;
+    text-align: center;
+    top:-100px;
+    left:400px;
+    width:200px;
+    height:60px;
+    font-size: 25px;
+    color:floralwhite;
+    background-color:darkslategrey;
+}
+.File3 
+{
+    position:relative;
+    text-align: center;
+    top:-100px;
+    left:500px;
+    width:200px;
+    height:60px;
+    font-size: 25px;
+    color:floralwhite;
+    background-color:darkslategrey;
+}
+/*-----------------page4---------------------------------*/
+
+#homeButton
+{
+    left:-600px;
+    top :20px;
+    margin-top: 5px;
+    display: block;
+    background-color:black;
+}
+#backButton
+{
+    left:-525px;
+    top :-40px;
+    margin-top: 5px;
+    display: block;
+    background-color:black;
+}
+#mainPageTopic
+{
+    font-weight:600;
+    font-size:30px;
+    color:black;
+    position:relative;
+    text-align: center;
+    top:50px;
+    left:-400px;
+}
+
+.table1 {
+    font-family: arial, sans-serif;
+    border-collapse: collapse;
+    position:relative;
+    left:300px;
+    top:-300px;
+}
+.table2 {
+    font-family: arial, sans-serif;
+    border-collapse: collapse;
+    position:relative;
+    left:300px;
+    top:-500px;
+}
+td, th {
+    border: 1px solid black;
+    text-align: left;
+    padding: 8px;
+}
+
+tr:nth-child(even) {
+    background-color: #dddddd;
+}
+
+#piechart1
+{
+    position:relative;
+    left:800px;
+    top:-50px;
+}
+#piechart2
+{
+    position:relative;
+    left:800px;
+    top:-220px;
+}

@@ -1,0 +1,38 @@
+access to Resources through 'service'
+
+team_drives_dict = {'team_drives_names':'team_drive_id',........}
+team_drive_files = {'team_drive_id':list of Files resources,.....}
+files_revisions = {'file_id':list of Revisions resources,....}
+
+potentially useful field
+
+ team_drive_files = { id : [ { file_id, name .. }, .. ] , ..}
+ files_revisions = { 
+ 	file_id : [ { 
+ 		id,
+ 		modifiedTime, 
+ 		lastModifyingUser: { displayName, emailAddress ...}, originalFilename*, ...}, ... ], ... 
+ }
+
+
+Timeline Input Data Format
+{
+UserName1(String): {whichWeek(String):numberOfVersionContributed(int),...},
+UserName2(String): {whichWeek(int):numberOfVersionContributed(int),...},
+...}
+
+eg
+
+{
+	"Peak Khor":{
+	"2018week36":2,
+	"2018week37":5
+	},
+
+	"Clare":{
+	"2018week36":5,
+	"2018week37":0
+	}
+}
+
+[ (userA, modifiedTime), (userA, modifiedTime), (userB, modifiedTime),  (userC, modifiedTime)... ]
