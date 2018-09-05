@@ -20,26 +20,28 @@
     font-weight:600;
     font-size:30px;
     color: aliceblue;
-    position:relative;
+    position:absolute;
     text-align: center;
     top:30px;
+    left:500px;
 }
 
 .mainPageTitle
 {
     font-size:75px;
     color:floralwhite;
-    position:relative;
+    position:absolute;
     text-align:center;
     top:100px;
+    left:425px ;
 }
 
 .logIn
 {
-    position:relative;
+    position:absolute;
     text-align: center;
-    top:250px;
-    left:700px;
+    top:500px;
+    left:650px;
     display:inline-block;
     font-size:25px;
     color:azure;
@@ -54,14 +56,15 @@
 {
     font-size:25px;
     color: aqua;
-    position:relative;
+    position:absolute;
     
-    left: 600px;
-    top:250px;
+    left: 550px;
+    top:400px;
 }
 input[type=text]{
-    position:relative;
+    position:absolute;
     left:50px;
+    top: -50px;
     width:200px;
     padding: 12px 20px;
     margin: 8px 0;
@@ -71,7 +74,7 @@ input[type=text]{
 }
 
 input[type=password]{
-    position:relative;
+    position:absolute;
     left:50px;
     width:200px;
     padding: 12px 20px;
