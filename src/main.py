@@ -103,7 +103,8 @@ def listFilesForTeamDrive(team_drive, team_drives_dict):
     team_drive_file_list = service.files().list(corpora='teamDrive', includeTeamDriveItems=True,
                                                 supportsTeamDrives=True,
                                                 q=("mimeType='application/vnd.google-apps.document'" or
-                                                   "mimeType=application/vnd.google-apps.spreadsheet'"),
+                                                   "mimeType=application/vnd.google-apps.spreadsheet'" and
+                                                   "trashed='False'"),
                                                 teamDriveId=key).execute()
     # Add key-value pair of {team_drive_id:list of Files resources} into dict
     team_drive_files[key] = team_drive_file_list.get('files')
@@ -150,6 +151,7 @@ def main():
     dparser = D_Parser(file_revisions)
     print(dparser.calculate_contribution())
     print(dparser.calculate_contribution_percentage())
+    print(dparser.calculate_contribution_with_week())
     sys.exit(0)
 
     for file_id in file_revisions:
