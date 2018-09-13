@@ -97,7 +97,7 @@ input[type=password]{
 /*-----------------------page2---------------------------------*/
 .Group1 
 {
-    position:relative;
+    position:absolute;
     text-align: center;
     top:175px;
     left:200px;
@@ -110,10 +110,10 @@ input[type=password]{
 
 .Group2
 {
-    position:relative;
+    position:absolute;
     text-align: center;
     top:175px;
-    left:500px;
+    left:900px;
     width:200px;
     height:60px;
     font-size: 25px;
@@ -123,15 +123,15 @@ input[type=password]{
 
 .pic1
 {
-    position:relative;
+    position:absolute;
     left:100px;
     top:150px;
 }
 
 .pic2
 {
-    position:relative;
-    left:200px;
+    position:absolute;
+    left:800px;
     top:150px;
 }
 
