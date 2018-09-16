@@ -36,7 +36,7 @@ class D_Parser:
         except KeyError:
             return []
 
-    def calculate_contribution(self):
+    def calculate_total_contribution(self):
         """
         Return number of contributions for each member of team drive 
         @:return all_users_contribution: (dict) {key:(string) user, value: (int) number_of_contributions}
@@ -56,7 +56,7 @@ class D_Parser:
 
         return all_users_contribution
 
-    def calculate_contribution_percentage(self):
+    def calculate_total_contribution_percentage(self):
         """
         Return percentage of contributions for each member of team drive 
         @:return contribution_percentage: (dict) {key:(string) user, value: (int) contributions_percentage}
@@ -90,7 +90,7 @@ class D_Parser:
 
         return str(year) + "week" + str(week)
 
-    def calculate_contribution_with_week(self):
+    def calculate_total_contribution_with_week(self):
         """
         Return number of contributions for each member of team drive at particular duration
         @:return all_users_contribution: (dict) {UserName1(String): 
@@ -122,6 +122,53 @@ class D_Parser:
                 else:
                     # Increment user contribution count for corresponding week
                     all_users_contribution[user[0]][user[1]] += 1
+
+        return all_users_contribution
+
+    def calculate_file_contribution(self, file_id):
+        """
+        Return number of contributions for each member for the file specifies by file_id
+        @:return all_users_contribution: (dict) {key:(string) user, value: (int) number_of_contributions}
+        """
+        all_users = []
+
+        for file_revision in self.file_revs[file_id]:
+
+            all_users.append(file_revision['lastModifyingUser']['displayName'])
+
+        all_users_contribution = {}
+        for user in all_users:
+            if user not in all_users_contribution:
+                all_users_contribution[user] = 1
+            else:
+                all_users_contribution[user] += 1
+
+        return all_users_contribution
+
+    def calculate_total_contribution_within_timeframe(self, time1, time2):
+        """
+        Return number of contributions for each member for the drive within timeframe
+        @:time1: (string) Lower bound for the time frame (included)
+        @:time2: (string) Upper bound for the time frame (included)
+        @:return all_users_contribution: (dict) {key:(string) user, value: (int) number_of_contributions} 
+        """
+
+        # [ (userA, modifiedTime), (userA, modifiedTime), (userB, modifiedTime),... ]
+        all_users = []
+
+        for file_id in self.file_revs:
+            for user in self.list_revisions_user(file_id):
+                # Check if the modifiedTime is withink timeframe, if yes,
+                # append into all_users list
+                if (time1 <= user[1] <= time2):
+                    all_users.append(user[0])
+
+        all_users_contribution = {}
+        for user in all_users:
+            if user not in all_users_contribution:
+                all_users_contribution[user] = 1
+            else:
+                all_users_contribution[user] += 1
 
         return all_users_contribution
 
