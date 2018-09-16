@@ -1,7 +1,7 @@
 """
 @author: Samuel
 @since: 25/8/2018
-@modified: 25/8/2018
+@modified: 16/9/2018
 
 """
 from __future__ import print_function
@@ -12,6 +12,7 @@ from googleapiclient import errors
 from d_parser import D_Parser
 import traceback
 import sys
+import time
 
 # If modifying these scopes, delete the file token.json.
 SCOPES = 'https://www.googleapis.com/auth/drive.readonly'
@@ -29,12 +30,9 @@ def getRevisionsForFile(drive_file):
     Call the Drive v3 API to get the revision(s) of each file and bind them into to their corresponding
     file in a dict
 
-    @:param drive_file: (Object) File Object
+    @:param drive_file: (dict) A dict containing metadata of a File
     @:return file_revisions: (dictionary) {key:file_id, value:list of Revisions resources}
     @pre-condition: Google Drive API v3 'service' initialized
-    @post-condition: none
-    @complexity: Worst-Case: O(n) where n is len(team_drive_files)
-    @complexity: Best-Case: O(n) where n is len(team_drive_files)
     @Exception HttpError: (errors) Exception raised when Revisions not supported for a specific file
     """
 
@@ -64,9 +62,6 @@ def getDriveIds():
 
     @:return team_drives_dict: (dictionary) {key:team_drive_name, value:team_drive_id}
     @pre-condition: Google Drive API v3 'service' initialized
-    @post-condition: none
-    @complexity: Worst-Case: O(n) where n is len(teamDrives)
-    @complexity: Best-Case: O(n) where n is len(teamDrives)
     """
     team_drives_dict = {}
     # All the teamdrives resources accessible by the current logged in account
@@ -90,10 +85,6 @@ def listFilesForTeamDrive(team_drive, team_drives_dict):
     @:param team_drives_dict: (dictionary) {key:team_drive_name, value:team_drive_id}
     @:return team_drive_files: (dictionary) {key:team_drive_id, value:list of Files resources}
     @pre-condition: Google Drive API v3 'service' initialized
-    @post-condition: none
-    @complexity: Worst-Case: O(n) where n is len(team_drives_dict)
-    @complexity: Best-Case: O(n) where n is len(team_drives_dict)
-
     """
 
     team_drive_files = {}
@@ -113,6 +104,10 @@ def listFilesForTeamDrive(team_drive, team_drives_dict):
 
 
 def get_file_revisions():
+    """
+    Get the file_revisions
+    @:return file_revisions: (dict) File revisions
+    """
     # Get team drives Id and names
     # team_drives_dict: {'team_drives_names':'team_drive_id',........}
     team_drives_dict = getDriveIds()
@@ -132,12 +127,16 @@ def get_file_revisions():
     # Get the list of revisions for each file and bind them to their corrsponding
     # file_id
     # file_revisions: {'file_id':list of Revisions resources,....}
+    start = time.time()
     file_revisions = {}
     for team_drive_id in team_drive_files:
         for drive_file in team_drive_files[team_drive_id]:
             # Merge the previous file_revisions with new file_revisions from getRevisionsForFile()
             # in every loop
             file_revisions = {**file_revisions, **getRevisionsForFile(drive_file)}
+
+    end = time.time()
+    print('time elapsed for getting team_drive_files: ' + str(end - start))
 
     for i in file_revisions:
         # print(i, file_revisions[i])
@@ -149,10 +148,17 @@ def main():
     file_revisions = get_file_revisions()
 
     dparser = D_Parser(file_revisions)
-    print(dparser.calculate_contribution())
-    print(dparser.calculate_contribution_percentage())
-    print(dparser.calculate_contribution_with_week())
+    for file_id in file_revisions:
+        print(file_id, end='')
+        # print(dparser.calculate_file_contribution(file_id))
+        print(dparser.calculate_total_contribution_within_timeframe(
+            '2018-05-19', '2018-05-20'))
+
+        break
     sys.exit(0)
+    print(dparser.calculate_total_contribution())
+    print(dparser.calculate_total_contribution_percentage())
+    print(dparser.calculate_total_contribution_with_week())
 
     for file_id in file_revisions:
         dparser.print_revisions_user(file_id)
