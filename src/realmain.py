@@ -12,7 +12,7 @@ import bottle
 from bottle import route, run, template, static_file
 import os
 
-# add template directory
+# add template directoryb
 viewpath = os.path.abspath(os.path.join(os.path.dirname(__file__), "../web"))
 bottle.TEMPLATE_PATH.insert(0, viewpath)
 

@@ -36,17 +36,16 @@
 
 .logIn
 {
-    position:relative;
+    position:absolute;
     text-align: center;
-    top:250px;
-    left:700px;
+    top:400px;
+    left:675px;
     display:inline-block;
     font-size:25px;
     color:azure;
     width:100px;
     height:50px;
     background-color:cornflowerblue;
-    border:1px solid
     
 }
 
@@ -54,14 +53,14 @@
 {
     font-size:25px;
     color: aqua;
-    position:relative;
+    position:absolute;
     
     left: 600px;
     top:250px;
 }
 input[type=text]{
-    position:relative;
-    left:50px;
+    position:absolute;
+    left:30px;
     width:200px;
     padding: 12px 20px;
     margin: 8px 0;
@@ -71,8 +70,9 @@ input[type=text]{
 }
 
 input[type=password]{
-    position:relative;
-    left:50px;
+    position:absolute;
+    top:50px;
+    left:30px;
     width:200px;
     padding: 12px 20px;
     margin: 8px 0;
@@ -92,6 +92,17 @@ input[type=password]{
     position:center;
 }
 /*-----------------------page2---------------------------------*/
+#allGroups
+{
+    font-weight:300;
+    font-size:30px;
+    color:black;
+    position:relative;
+    text-align: center;
+    top:100px;
+    left:0px;
+}
+
 .Group1 
 {
     position:relative;
@@ -148,7 +159,7 @@ input[type=password]{
     color:black;
     position:relative;
     text-align: center;
-    top:50px;
+    top:65px;
     left:-400px;
 }
 
@@ -171,22 +182,22 @@ input[type=password]{
 }
 #mainpiechart
 {
-    position:relative;
+    position:absolute;
     left:800px;
-    top:-50px;
+    top:200px;
 }
 .maintable {
     font-family: arial, sans-serif;
     border-collapse: collapse;
     position:relative;
     left:300px;
-    top:-300px;
+    top:50px;
 }
 .File1 
 {
     position:relative;
     text-align: center;
-    top:-100px;
+    top:150px;
     left:300px;
     width:200px;
     height:60px;
@@ -198,7 +209,7 @@ input[type=password]{
 {
     position:relative;
     text-align: center;
-    top:-100px;
+    top:150px;
     left:400px;
     width:200px;
     height:60px;
@@ -210,13 +221,22 @@ input[type=password]{
 {
     position:relative;
     text-align: center;
-    top:-100px;
+    top:150px;
     left:500px;
     width:200px;
     height:60px;
     font-size: 25px;
     color:floralwhite;
     background-color:darkslategrey;
+}
+
+#backButton2
+{
+    left:-670px;
+    top :-100px;
+    margin-top: 5px;
+    display: block;
+    background-color:black;
 }
 /*-----------------page4---------------------------------*/
 
@@ -243,23 +263,23 @@ input[type=password]{
     color:black;
     position:relative;
     text-align: center;
-    top:50px;
+    top:65px;
     left:-400px;
 }
 
 .table1 {
     font-family: arial, sans-serif;
     border-collapse: collapse;
-    position:relative;
+    position:absolute;
     left:300px;
-    top:-300px;
+    top:175px;
 }
 .table2 {
     font-family: arial, sans-serif;
     border-collapse: collapse;
-    position:relative;
+    position:absolute;
     left:300px;
-    top:-500px;
+    top:375px;
 }
 td, th {
     border: 1px solid black;
@@ -273,13 +293,55 @@ tr:nth-child(even) {
 
 #piechart1
 {
-    position:relative;
+    position:absolute;
     left:800px;
-    top:-50px;
+    top:90px;
 }
 #piechart2
 {
-    position:relative;
+    position:absolute;
     left:800px;
-    top:-220px;
+    top:450px;
+}
+
+/*-----------------loading page---------------------------------*/
+.loading {
+  position: absolute;
+  top: 50%;
+  left: 47.5%;
+}
+.loading-bar {
+  display: inline-block;
+  width: 10px;
+  height: 35px;
+  border-radius: 4px;
+  animation: loading 1s ease-in-out infinite;
+}
+.loading-bar:nth-child(1) {
+  background-color: #3498db;
+  animation-delay: 0;
+}
+.loading-bar:nth-child(2) {
+  background-color: #c0392b;
+  animation-delay: 0.09s;
+}
+.loading-bar:nth-child(3) {
+  background-color: #f1c40f;
+  animation-delay: .18s;
+}
+.loading-bar:nth-child(4) {
+  background-color: #27ae60;
+  animation-delay: .27s;
+}
+
+@keyframes loading {
+  0% {
+    transform: scale(1);
+  }
+  20% {
+    transform: scale(1, 2.2);
+  }
+  40% {
+    transform: scale(1);
+  }
 }

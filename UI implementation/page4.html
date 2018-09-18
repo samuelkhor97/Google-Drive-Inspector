@@ -16,7 +16,7 @@
         <div>
             <header>
                 <div id="mainPageHeader" >
-                    Make marking, easy
+                    Make marking easy
                 </div>
                 <div id="mainPageTopic" >
                     File 1.py
@@ -24,14 +24,17 @@
             </header>
             
             <div>
-                <button id="homeButton" class="mdl-button mdl-js-button mdl-button--fab mdl-js-ripple-effect mdl-button--colored" onclick="returnHome()"> 
+                <a href="LogInPage.html">
+                    <button id="homeButton" class="mdl-button mdl-js-button mdl-button--fab mdl-js-ripple-effect mdl-button--colored"> 
                     <i class="material-icons">home</i> 
-                </button> 
+                    </button> 
+                </a>
                 
-                <button id="backButton" class="mdl-button mdl-js-button mdl-button--fab mdl-js-ripple-effect mdl-button--colored" onclick="returnHome()"> 
-                    <i class="material-icons">arrow_back</i> 
-                </button>  
-                
+                <a href="page3.html">
+                    <button id="backButton" class="mdl-button mdl-js-button mdl-button--fab mdl-js-ripple-effect mdl-button--colored"> 
+                        <i class="material-icons">arrow_back</i> 
+                    </button>  
+                </a>
                 <div id="piechart1"></div>
 
                 <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
@@ -41,6 +44,10 @@
                     google.charts.load('current', {'packages':['corechart']});
                     google.charts.setOnLoadCallback(drawChart);
 
+            function returnHome() {
+
+
+            }
             // Draw the chart and set the chart values
             function drawChart() {
             var data = google.visualization.arrayToDataTable([
@@ -159,5 +166,6 @@
     </div>
         
         <!-- Javascript files below: -->
+</script>
     </body>
 </html>
