@@ -20,33 +20,98 @@
     font-weight:600;
     font-size:30px;
     color: aliceblue;
-    position:absolute;
+    position:relative;
     text-align: center;
-    top:30px;
-    left:500px;
+    top:20px;
+    font-family: 'Bookman', serif;
 }
 
 .mainPageTitle
 {
     font-size:75px;
     color:floralwhite;
-    position:absolute;
+    position:relative;
     text-align:center;
     top:100px;
-    left:425px ;
+    font-family: 'Bookman', serif;
+}
+
+
+/ Variables
+$blue: #15B5E2;
+$btn-bg: #10131C;
+
+
+body {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+}
+
+.btn-wrapper {
+  width: 200px;
+  height: 50px;
+  position: absolute;
+  left: 600px;
+  top: 280px;
+  margin: 40px auto 0;
+}
+.btn-wrapper:hover .btn-inner {
+  top: -4px;
+  transform: scale(1, 1);
+  cursor: pointer;
+}
+.btn-wrapper__container {
+  border-bottom: 2px solid #15B5E2;
+  position: absolute;
+  width: 100%;
+  height: 80px;
+}
+.btn-wrapper__container:before, .btn-wrapper__container:after {
+  border-bottom: 2px solid #15B5E2;
+  width: 96%;
+  left: 2%;
+  bottom: -8px;
+  content: "";
+  position: absolute;
+}
+.btn-wrapper__container:after {
+  width: 92%;
+  left: 4%;
+  bottom: -14px;
+}
+.btn-wrapper__container .btn-inner {
+  width: 104.2%;
+  height: 100%;
+  position: absolute;
+  top: 20px;
+  left: -2.1%;
+  border: 2px solid #15B5E2;
+  box-sizing: border-box;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-family: 'Source Code Pro', monospace;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  font-size: 15px;
+  background: #10131C;
+  transform: scale(0.96, 0.96);
+  transition: all .3s;
+  z-index: 4;
+}
+.btn-wrapper__container .btn-inner__text {
+  text-decoration: none;
+  color: #15B5E2;
 }
 
 .logIn
 {
-    position:absolute;
+    position:relative;
     text-align: center;
-<<<<<<< HEAD
-    top:400px;
-    left:675px;
-=======
-    top:500px;
-    left:650px;
->>>>>>> clarisse
+    top:75px;
+    left:80px;
     display:inline-block;
     font-size:25px;
     color:azure;
@@ -62,17 +127,12 @@
     color: aqua;
     position:absolute;
     
-    left: 550px;
-    top:400px;
+    left:575px;
+    top:250px;
 }
 input[type=text]{
     position:absolute;
-<<<<<<< HEAD
     left:30px;
-=======
-    left:50px;
-    top: -50px;
->>>>>>> clarisse
     width:200px;
     padding: 12px 20px;
     margin: 8px 0;
@@ -83,12 +143,8 @@ input[type=text]{
 
 input[type=password]{
     position:absolute;
-<<<<<<< HEAD
     top:50px;
     left:30px;
-=======
-    left:50px;
->>>>>>> clarisse
     width:200px;
     padding: 12px 20px;
     margin: 8px 0;
@@ -121,48 +177,44 @@ input[type=password]{
 
 .Group1 
 {
-    position:absolute;
+    position:relative;
     text-align: center;
-    top:175px;
-    left:200px;
+    top:250px;
+    left:300px;
     width:200px;
-    height:60px;
+    height:200px;
     font-size: 25px;
-    color:floralwhite;
-    background-color:darkslategrey;
+    font-family: 'Bookman',serif;
+    color:black;
 }
 
 .Group2
 {
-    position:absolute;
+    position:relative;
     text-align: center;
-    top:175px;
-    left:900px;
+    top:240px;
+    left:400px;
     width:200px;
-    height:60px;
+    height:200px;
     font-size: 25px;
-    color:floralwhite;
-    background-color:darkslategrey;
+    font-family: "Bookman",serif;
+    color:black;
 }
 
-.pic1
+#backButton3
 {
-    position:absolute;
-    left:100px;
-    top:150px;
+    left:-610px;
+    top :-100px;
+    margin-top: 5px;
+    display: block;
+    background-color:black;
 }
 
-.pic2
-{
-    position:absolute;
-    left:800px;
-    top:150px;
-}
 
 #addPathButton
 {
     left:450px;
-    bottom:175px;
+    top: -80px;
     margin-top: 5px;
     display: block;
     background-color:azure;
@@ -172,6 +224,7 @@ input[type=password]{
 {
     font-weight:600;
     font-size:30px;
+    font-family: 'Bookman',serif;
     color:black;
     position:relative;
     text-align: center;
@@ -191,7 +244,7 @@ input[type=password]{
 #deleteButton
 {
     right:-525px;
-    top :-100px;
+    top : -140px;
     margin-top: 5px;
     display: block;
     background-color:black;
@@ -199,14 +252,14 @@ input[type=password]{
 #mainpiechart
 {
     position:absolute;
-    left:800px;
-    top:200px;
+    left:750px;
+    top:250px;
 }
 .maintable {
     font-family: arial, sans-serif;
     border-collapse: collapse;
     position:relative;
-    left:300px;
+    left:150px;
     top:50px;
 }
 .File1 
@@ -248,11 +301,142 @@ input[type=password]{
 
 #backButton2
 {
-    left:-670px;
+    left:-665px;
     top :-100px;
     margin-top: 5px;
     display: block;
     background-color:black;
+}
+
+.OpenMenuButton {
+  position: absolute;
+  top: 600px;
+  left: 575px;
+  cursor: pointer;
+  font-size: 24px;
+  font-size: 1.5rem;
+  font-family: 'Bookman',serif;
+  font-weight: 900;
+  word-spacing: 140%;
+  letter-spacing: 4px;
+}
+
+
+.DrawerMenu {
+  position: fixed;
+  z-index: 99;
+  width: 100vw;
+  height: 100vh;
+  top: 0;
+  bottom: 0;
+  -webkit-transform: translateX(-100%);
+          transform: translateX(-100%);
+  -webkit-transition: -webkit-transform 0.5s cubic-bezier(0.4, 0.0, 0.2, 1);
+  transition: -webkit-transform 0.5s cubic-bezier(0.4, 0.0, 0.2, 1);
+  transition: transform 0.5s cubic-bezier(0.4, 0.0, 0.2, 1);
+  transition: transform 0.5s cubic-bezier(0.4, 0.0, 0.2, 1), -webkit-transform 0.5s cubic-bezier(0.4, 0.0, 0.2, 1);
+  display: grid;
+  grid-template-areas: 'MENU OVERLAY';
+  grid-template-columns: 15fr 5fr;
+  
+}
+
+
+@media (min-width: 30em) {
+
+
+  .DrawerMenu {
+    grid-template-columns: 5fr 10fr;
+  }
+}
+
+
+#DrawerMenuTrigger:checked ~ .DrawerMenu {
+  -webkit-transform: none;
+          transform: none;
+}
+
+
+.MenuContainer {
+  contain: content;
+  grid-area: 'MENU';
+  background-color: slategray;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+  padding: 24px;
+  overflow: auto;
+  -webkit-overflow-scrolling: touch;
+}
+
+
+@media (min-width: 30em) {
+
+
+  .MenuContainer {
+    min-width: 400px;
+  }
+}
+
+
+.Menu {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-flow: column wrap;
+          flex-flow: column wrap;
+  -webkit-transform: translateX(-30%);
+          transform: translateX(-30%);
+  opacity: 0;
+  -webkit-transition: all 500ms cubic-bezier(0.4, 0.0, 0.2, 1);
+  transition: all 500ms cubic-bezier(0.4, 0.0, 0.2, 1);
+  -webkit-transition-delay: 0;
+          transition-delay: 0
+}
+
+
+#DrawerMenuTrigger:checked ~ .DrawerMenu .Menu {
+  -webkit-transform: none;
+          transform: none;
+  opacity: 1;
+  -webkit-transition-delay: 300ms;
+          transition-delay: 300ms;
+}
+
+
+.Menu a {
+  text-decoration: none;
+  font-family: 'Bookman',serif;
+  font-size: 16px;
+  color: #FFF;
+  display: block;
+  padding: 16px 0;
+}
+
+
+.Menu a:hover {
+  color: #69F0AE;
+}
+
+
+.Menu > * + * {
+  border-top: 1px solid rgba(255, 255, 255, .1);
+}
+
+
+.MenuOverlay {
+  display: block;
+  grid-area: 'OVERLAY';  
+}
+
+
+.Menu__Title {
+  color: #FFF;
+  font-family: 'Bookman',serif;
+  font-size: 32px;
+  font-size: 2rem;
+  margin-top: 0;
 }
 /*-----------------page4---------------------------------*/
 
