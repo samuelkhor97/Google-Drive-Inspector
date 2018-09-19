@@ -15,7 +15,7 @@ import sys
 import time
 
 
-def getRevisionsForFile(drive_file):
+def getRevisionsForFile(drive_file, service):
     """
     Call the Drive v3 API to get the revision(s) of each file and bind them into to their corresponding
     file in a dict
@@ -67,7 +67,7 @@ def getDriveIds(service):
     return team_drives_dict
 
 
-def listFilesForTeamDrive(team_drive_id):
+def listFilesForTeamDrive(team_drive_id, service):
     """
     Get the list of files in of a particular team_drive in team_drives_dict and bind them to their corresponding
     teamDrive Id in a dict
@@ -102,7 +102,7 @@ def get_file_revisions(drive_id, service):
 
     # Get the list of files in the teamDrive with 'drive_id' and bind them to its 'drive_id'
     # team_drive_files: {'team_drive_id':list of Files resources}
-    team_drive_files = listFilesForTeamDrive(drive_id)
+    team_drive_files = listFilesForTeamDrive(drive_id, service)
 
     # Get the list of revisions for each file and bind them to their corrsponding
     # file_id
@@ -114,7 +114,7 @@ def get_file_revisions(drive_id, service):
     for drive_file in team_drive_files[team_drive_id]:
         # Merge the previous file_revisions with new file_revisions from getRevisionsForFile()
         # in every loop
-        file_revisions = {**file_revisions, **getRevisionsForFile(drive_file)}
+        file_revisions = {**file_revisions, **getRevisionsForFile(drive_file, service)}
 
     end = time.time()
     print('time elapsed for getting team_drive_files: ' + str(end - start))
