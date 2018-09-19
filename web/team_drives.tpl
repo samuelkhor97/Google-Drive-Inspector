@@ -54,11 +54,11 @@
                     <i class="material-icons">add_box</i> 
                 </button>  
                 
-                <a href="LogInPage.html">
-                    <button id="backButton3" class="mdl-button mdl-js-button mdl-button--fab mdl-js-ripple-effect mdl-button--colored"> 
-                        <i class="material-icons">arrow_back</i> 
-                    </button>  
-                </a>
+                
+                <button id="backButton3" class="mdl-button mdl-js-button mdl-button--fab mdl-js-ripple-effect mdl-button--colored" onclick="logoutPrompt()"> 
+                    <i class="material-icons">arrow_back</i> 
+                </button>  
+                
 
                 <button id="deleteButton" class="mdl-button mdl-js-button mdl-button--fab mdl-js-ripple-effect mdl-button--colored" onclick="returnHome()"> 
                     <i class="material-icons">delete_sweep</i> 
@@ -73,5 +73,12 @@
         </div>
         
         <!-- Javascript files below: -->
+        <script>
+        function logoutPrompt() {
+            if (confirm("Logout?")) {
+                window.location.href = "/logout";
+            }
+        }
+        </script>
     </body>
 </html>

@@ -14,14 +14,14 @@ from oauth2client import file, client, tools
 from googleapiclient import errors
 from drive_functions import *
 import bottle
-from bottle import route, run, template, static_file, redirect
+from bottle import route, run, template, static_file, redirect, request
 import os
 
 # add template directoryb
 viewpath = os.path.abspath(os.path.join(os.path.dirname(__file__), "../web"))
 bottle.TEMPLATE_PATH.insert(0, viewpath)
 service = None
-
+flow = None
 
 @route("/static/<filepath>")
 def css(filepath):
@@ -41,12 +41,26 @@ def login():
     store = file.Storage('token.json')
     creds = store.get()
     if not creds or creds.invalid:
+        global flow
         flow = client.flow_from_clientsecrets(
-            'credentials.json', SCOPES)
-        creds = tools.run_flow(flow, store)
+            'credentials.json', scope=SCOPES, redirect_uri='http://localhost:7878/login/return')
+        auth_uri = flow.step1_get_authorize_url()
+        return redirect(auth_uri)
+    else:
+        global service
+        service = build('drive', 'v3', http=creds.authorize(Http()))
+        return redirect('/team_drives')
+
+
+@route('/login/return')
+def login_return():
+    global flow
+    code = request.query.code
+    creds = flow.step2_exchange(code)
+    del flow
+    file.Storage('token.json').put(creds)
     global service
     service = build('drive', 'v3', http=creds.authorize(Http()))
-
     return redirect('/team_drives')
 
 
@@ -68,5 +82,10 @@ def team_contributions(team_drive_id):
 def main():
     return request_list_all_users()
 
+@route('/logout')
+def logout():
+    service = None
+    os.remove('token.json')
+    return redirect('/')
 
 run(host='localhost', port=7878)

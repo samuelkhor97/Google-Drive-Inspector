@@ -4,8 +4,7 @@ start cmd /k "cd %~dp0 & venv\Scripts\activate.bat & cd src & start python realm
 goto END
 :MAIN
 cd %~dp0\src
-start python realmain.py
+start python realmain.py 
 :END
-start http://localhost:7878
 exit
 
