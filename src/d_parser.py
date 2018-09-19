@@ -62,7 +62,7 @@ class D_Parser:
         @:return contribution_percentage: (dict) {key:(string) user, value: (int) contributions_percentage}
         """
 
-        all_users_contribution = self.calculate_contribution()
+        all_users_contribution = self.calculate_total_contribution()
 
         total_contributions_by_all = sum(all_users_contribution.values())
 

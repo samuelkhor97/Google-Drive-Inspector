@@ -18,11 +18,15 @@ from threading import Thread
 import bottle
 from bottle import route, run, template, static_file, redirect, request
 import os
+# delete below import later
+import webbrowser
 
 # add template directoryb
 viewpath = os.path.abspath(os.path.join(os.path.dirname(__file__), "../web"))
 bottle.TEMPLATE_PATH.insert(0, viewpath)
 service = None
+file_revisions = None
+drive_ids = None
 flow = None
 
 
@@ -69,7 +73,12 @@ def login_return():
 
 @route('/team_drives')
 def list_team_drives():
+    global file_revisions
+    file_revisions = None
+
+    global drive_ids
     drive_ids = getDriveIds(service)
+
     for drive_name in drive_ids:
         drive_ids[drive_name] = '/loading/' + drive_ids[drive_name]
 
@@ -77,20 +86,35 @@ def list_team_drives():
 
 
 def load_file_revisions(team_drive_id, service):
+    global file_revisions
     file_revisions = get_file_revisions(team_drive_id, service)
-    return template('team_contributions', file_revisions=file_revisions)
+
+
+@route('/isready')
+def isready():
+    return '1' if file_revisions != None else '0'
 
 
 @route('/loading/<team_drive_id>')
 def loading(team_drive_id):
     thr = Thread(target=load_file_revisions, args=[team_drive_id, service])
     thr.start()
-    return template('loading')
+    redirect_link = '/team_drive_contributions/' + team_drive_id
+    return template('loading', redirect_link=redirect_link)
 
 
-@route('/team_drives/<team_drive_id>')
+@route('/team_drive_contributions/<team_drive_id>')
 def team_contributions(team_drive_id):
     dparser = D_Parser(file_revisions)
+    all_users_contributions = dparser.calculate_total_contribution()
+    all_users_contributions_percentage = dparser.calculate_total_contribution_percentage()
+
+    drive_name = list(drive_ids.keys())[list(
+        drive_ids.values()).index('/loading/' + str(team_drive_id))]
+    return template('team_contributions',
+                    drive_name=drive_name,
+                    contributions=all_users_contributions,
+                    contributions_percent=all_users_contributions_percentage)
 
 
 @route('/main')
@@ -100,8 +124,14 @@ def main():
 
 @route('/logout')
 def logout():
+    global service
     service = None
+    global file_revisions
+    file_revisions = None
+
     os.remove('token.json')
     return redirect('/')
+
+webbrowser.open('http://localhost:7878')
 
 run(host='localhost', port=7878)
