@@ -78,7 +78,6 @@ def listFilesForTeamDrive(team_drive_id, service):
     """
 
     team_drive_files = {}
-
     key = team_drive_id
     # All the Files resources for the particular team_drive
     team_drive_file_list = service.files().list(corpora='teamDrive', includeTeamDriveItems=True,
@@ -109,6 +108,8 @@ def get_file_revisions(drive_id, service):
     # file_revisions: {'file_id':list of Revisions resources,....}
     start = time.time()
     file_revisions = {}
+    # Only one key-value pair in the dict, hence assessing the only value this
+    # way
     team_drive_id = next(iter(team_drive_files))
 
     for drive_file in team_drive_files[team_drive_id]:

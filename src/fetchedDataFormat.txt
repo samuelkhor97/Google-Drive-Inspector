@@ -6,7 +6,7 @@ files_revisions = {'file_id':list of Revisions resources,....}
 
 potentially useful field
 
- team_drive_files = { id : [ { file_id, name .. }, .. ] }
+ team_drive_files = { team_drive_id : [{ file_id, name .. },...]}
  files_revisions = { 
  	file_id : [ { 
  		id,

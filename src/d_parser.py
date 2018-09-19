@@ -13,19 +13,12 @@ class D_Parser:
         # except KeyError on caller
         return self.file_revs[file_id]
 
-    def get_file_name(self, file_id):
-        # Tiong: I'm ashamed of myself for writing this piece of shit
-        revs_list = self._get_revisions_by_id(file_id)
-        for rev in revs_list:
-            return rev['originalFilename']
-
-    """
-    Output: [ (userA, modifiedTime), (userA, modifiedTime), (userB, modifiedTime),  (userC, modifiedTime)... ]
-    Can obtain the contribution percentage by calculating the frequency of each user over total revisions count.
-    *Awaiting implementation* 
-    """
-
     def list_revisions_user(self, file_id):
+        """
+        Return the files' modifying users and modifiedTime in list of tuple
+        @:return userlist: (list) [ (userA, modifiedTime), (userA, modifiedTime), (userB, modifiedTime)... ]
+
+        """
         try:
             userlist = []
             file_revs = self._get_revisions_by_id(file_id)
@@ -171,21 +164,3 @@ class D_Parser:
                 all_users_contribution[user] += 1
 
         return all_users_contribution
-
-    """
-    A function to test the usability/whatev of list_revision_user function, DEV build only
-    """
-
-    def print_revisions_user(self, file_id):
-        user_list = self.list_revisions_user(file_id)
-        if user_list is []:
-            print("[ERROR] file_id not found in given array")
-            return
-        try:
-            print("[%s] FILENAME: %s " %
-                  (file_id, self.get_file_name(file_id)))
-        except KeyError:
-            print("[%s] FILENAME unavailable, might be a gdoc" % file_id)
-            pass
-        for user in user_list:
-            print("[%s] %s " % (file_id, user))
