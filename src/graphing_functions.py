@@ -15,7 +15,7 @@ def totalContributionChart(dictInput):
 
     @:param dictInput: A dictionary with key-value pair of team member:
                        contribution.
-    @:return: A figure object containing the pie chart.
+    @:return: A string of HTML code to display the graph.
     @:pre-condition: Input must be a dictionary with numbers as values.
     @:post-condition: None.
     @:complexity: Best and worst case: O(N), where N is the length of input.
@@ -32,9 +32,10 @@ def totalContributionChart(dictInput):
     ax.pie(contribution, labels=names, autopct="%1.1f%%")
     ax.axis("equal")
     ax.set_title("Percentage contribution per person")
-    pyplot.show()
+    #pyplot.show()
 
-    return fig
+    toReturn = mpld3.fig_to_html(fig)
+    return toReturn
 
 def timelineChart(dictInput):
     """
@@ -43,7 +44,7 @@ def timelineChart(dictInput):
     @:param dictInput: A dictionary with key-value pair of team member:
                        contribution, where contribution is also a dictionary
                        with key-value pair of week:contribution.
-    @:return: A figure object containing the stacked bar chart.
+    @:return: A string of HTML code to display the graph.
     @:pre-condition: Input must be a dictionary with values of dictionaries with
                      numbers as values.
     @:post-condition: None.
@@ -78,16 +79,17 @@ def timelineChart(dictInput):
     pyplot.title("Contributions per person on a weekly basis")
     pyplot.xticks(ind, weeks)
     pyplot.legend([plots[i][0] for i in range(len(plots))], names)
-    pyplot.show()
+    #pyplot.show()
 
-    return fig
+    toReturn = mpld3. fig_to_html(fig)
+    return toReturn
     
 # Test code.
 if __name__ == "__main__":
     myDict = {"Test 1": 10, "Test 2": 20, "Test 3": 30}
 
-    myFig1 = totalContributionChart(myDict)
+    html1 = totalContributionChart(myDict)
 
     dict2 = {"Peak Khor":{"2018week36":2,"2018week37":5},"Clare":{"2018week36":5,"2018week37":0}}
 
-    myFig2 = timelineChart(dict2)
+    html2 = timelineChart(dict2)
