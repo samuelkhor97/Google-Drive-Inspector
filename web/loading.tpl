@@ -1,20 +1,20 @@
 <!doctype html>
 <html>
     <head>
-        <title>Navigator</title>
+        <title>Loading Team Drive</title>
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
         <link rel="stylesheet" href="https://code.getmdl.io/1.3.0/material.indigo-pink.min.css">
-        <link rel="stylesheet" href="static/Assignment1CSS.css" />
+        <link rel="stylesheet" href="../static/Assignment1CSS.css" />
         <meta name="apple-mobile-web-app-capable" content="yes" />
         <meta name="mobile-web-app-capable" content="yes" />
     </head>
     
-    <body   id="mainPageBackground" background="static/Background_for_all.jpg">
+    <body   id="mainPageBackground" background="../static/Background_for_all.jpg">
         <div>
         	<header>
         	    <div id="mainPageHeader" >
-                    loading your page
+                    Loading Team Drive Insight
                 </div>	
         	</header>
 

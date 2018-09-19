@@ -13,6 +13,8 @@ from httplib2 import Http
 from oauth2client import file, client, tools
 from googleapiclient import errors
 from drive_functions import *
+from d_parser import D_Parser
+from threading import Thread
 import bottle
 from bottle import route, run, template, static_file, redirect, request
 import os
@@ -23,6 +25,7 @@ bottle.TEMPLATE_PATH.insert(0, viewpath)
 service = None
 flow = None
 
+
 @route("/static/<filepath>")
 def css(filepath):
     return static_file(filepath, root=viewpath + "/static/")
@@ -30,7 +33,7 @@ def css(filepath):
 
 @route('/')
 def index():
-    return template('index', content="Dynamically added content")
+    return template('index')
 
 
 @route('/login')
@@ -68,19 +71,32 @@ def login_return():
 def list_team_drives():
     drive_ids = getDriveIds(service)
     for drive_name in drive_ids:
-        drive_ids[drive_name] = '/team_drives/' + drive_ids[drive_name]
+        drive_ids[drive_name] = '/loading/' + drive_ids[drive_name]
 
     return template('team_drives', drive_ids=drive_ids)
 
 
+def load_file_revisions(team_drive_id, service):
+    file_revisions = get_file_revisions(team_drive_id, service)
+    return template('team_contributions', file_revisions=file_revisions)
+
+
+@route('/loading/<team_drive_id>')
+def loading(team_drive_id):
+    thr = Thread(target=load_file_revisions, args=[team_drive_id, service])
+    thr.start()
+    return template('loading')
+
+
 @route('/team_drives/<team_drive_id>')
 def team_contributions(team_drive_id):
-    print("yes")
+    dparser = D_Parser(file_revisions)
 
 
 @route('/main')
 def main():
     return request_list_all_users()
+
 
 @route('/logout')
 def logout():
