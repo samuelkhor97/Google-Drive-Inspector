@@ -10,6 +10,7 @@ from matplotlib import pyplot
 import numpy
 import mpld3
 
+
 def totalContributionChart(dictInput):
     """
     Displays a pie chart showing percentages of each person's contribution.
@@ -23,11 +24,11 @@ def totalContributionChart(dictInput):
     """
     if type(dictInput) != dict:
         raise TypeError
-    
+
     keys = list(dictInput)
-    contribution = [dictInput[key] for key in keys] # Creating a list of the
-                                                    # 'value' items from the
-                                                    # input.
+    contribution = [dictInput[key] for key in keys]  # Creating a list of the
+    # 'value' items from the
+    # input.
 
     fig1, ax1 = pyplot.subplots()
     ax1.pie(contribution, labels=keys, autopct="%1.1f%%")
@@ -36,6 +37,7 @@ def totalContributionChart(dictInput):
     pyplot.show()
 
     return fig1
+
 
 def timelineChart(dictInput):
     """
@@ -55,11 +57,11 @@ def timelineChart(dictInput):
 
     names = list(dictInput)
     weeks = list(dictInput[names[0]])   # Assume that every person has the same
-                                        # weeks.
+    # weeks.
     # Creating and filling up a contribution matrix.
     contributions = [[dictInput[name][week] for week in weeks]
                      for name in names]
-    
+
     ind = numpy.arange(len(weeks))
     plots = [None for i in range(len(names))]
 
@@ -69,7 +71,7 @@ def timelineChart(dictInput):
             thisBottom = [thisBottom[week] + contributions[before][week]
                           for week in range(len(thisBottom))]
         plots[person] = pyplot.bar(ind, contributions[person],
-                                   bottom = thisBottom)
+                                   bottom=thisBottom)
     pyplot.ylabel("contributions")
     pyplot.title("Contributions per person on a weekly basis")
     pyplot.xticks(ind, weeks)
@@ -77,13 +79,14 @@ def timelineChart(dictInput):
     pyplot.show()
 
     return
-    
+
 # Test code.
 if __name__ == "__main__":
     myDict = {"Test 1": 10, "Test 2": 20, "Test 3": 30}
 
     # myPlot = totalContributionChart(myDict)
 
-    dict2 = {"Peak Khor":{"2018week36":2,"2018week37":5},"Clare":{"2018week36":5,"2018week37":0}}
+    dict2 = {"Peak Khor": {"2018week36": 2, "2018week37": 5},
+             "Clare": {"2018week36": 5, "2018week37": 0}}
 
     timelineChart(dict2)
