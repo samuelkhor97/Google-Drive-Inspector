@@ -45,11 +45,12 @@ def getRevisionsForFile(drive_file):
     return file_revisions
 
 
-def getDriveIds():
+def getDriveIds(service):
     """
     Call the Drive v3 API to get the teamDrive Ids and bind them with their
     corresponding names in dict
 
+    @:service: (class) The Google Drive service built
     @:return team_drives_dict: (dictionary) {key:team_drive_name, value:team_drive_id}
     @pre-condition: Google Drive API v3 'service' initialized
     """

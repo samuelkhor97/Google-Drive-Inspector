@@ -174,8 +174,7 @@ input[type=password]{
     top:100px;
     left:0px;
 }
-
-.Group1 
+/*.Group
 {
     position:relative;
     text-align: center;
@@ -187,20 +186,7 @@ input[type=password]{
     font-family: 'Bookman',serif;
     color:black;
 }
-
-.Group2
-{
-    position:relative;
-    text-align: center;
-    top:240px;
-    left:400px;
-    width:200px;
-    height:200px;
-    font-size: 25px;
-    font-family: "Bookman",serif;
-    color:black;
-}
-
+*/
 #backButton3
 {
     left:-610px;

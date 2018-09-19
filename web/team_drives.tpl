@@ -25,10 +25,30 @@
 
             <div id="allGroups">ALL GROUPS</div>
 
-                <a href="page3.html">
-                    <button class="Group1">Team GitRekt</button>
-                    <button class="Group2">Team RandomName</button>
-                </a>
+
+                <!-- <button class="Group1">Team GitRekt</button>
+                <button class="Group2">Team RandomName</button> -->
+                % for drive_name in drive_ids:
+                    <a href={{drive_ids[drive_name]}}
+                        style="
+                            position:relative;
+                            text-align: center;
+                            top:250px;
+                            left:300px;
+                            width:200px;
+                            height:200px;
+
+                            font: bold 11px Arial;
+                              text-decoration: none;
+                              background-color: #EEEEEE;
+                              color: #333333;
+                              padding: 2px 6px 2px 6px;
+                              border-top: 1px solid #CCCCCC;
+                              border-right: 1px solid #333333;
+                              border-bottom: 1px solid #333333;
+                              border-left: 1px solid #CCCCCC;">{{drive_name}}</a>
+                % end
+                
 
                 <button id="uploadButton" class="mdl-button mdl-js-button mdl-button--fab mdl-js-ripple-effect mdl-button--colored" onclick="returnHome()"> 
                     <i class="material-icons">add_box</i> 
