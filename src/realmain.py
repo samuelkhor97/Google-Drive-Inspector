@@ -20,6 +20,8 @@ from bottle import route, run, template, static_file, redirect, request
 import os
 # delete below import later
 import webbrowser
+# import mpld3
+# from graphing_functions import *
 
 # add template directoryb
 viewpath = os.path.abspath(os.path.join(os.path.dirname(__file__), "../web"))
@@ -103,8 +105,24 @@ def loading(team_drive_id):
     return template('loading', redirect_link=redirect_link)
 
 
+def get_file_names_ids(team_drive_id):
+    files_list = listFilesForTeamDrive(
+        team_drive_id, service)[team_drive_id]
+
+    file_names_ids_dict = {}
+    for file in files_list:
+        file_names_ids_dict[file['name']] = file['id']
+    return file_names_ids_dict
+
+
 @route('/team_drive_contributions/<team_drive_id>')
 def team_contributions(team_drive_id):
+    # dict2 = {"Peak Khor": {"2018week36": 2, "2018week37": 5},
+    #          "Clare": {"2018week36": 5, "2018week37": 0}}
+    # timeline = mpld3.fig_to_html(timelineChart(dict2))
+
+    file_names_ids_dict = get_file_names_ids(team_drive_id)
+
     dparser = D_Parser(file_revisions)
     all_users_contributions = dparser.calculate_total_contribution()
     all_users_contributions_percentage = dparser.calculate_total_contribution_percentage()
@@ -114,7 +132,8 @@ def team_contributions(team_drive_id):
     return template('team_contributions',
                     drive_name=drive_name,
                     contributions=all_users_contributions,
-                    contributions_percent=all_users_contributions_percentage)
+                    contributions_percent=all_users_contributions_percentage,
+                    file_names_ids=file_names_ids_dict)
 
 
 @route('/main')

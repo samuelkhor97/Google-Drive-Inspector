@@ -30,11 +30,26 @@
             <div class="MenuContainer">
                 <nav class="Menu">
                     <h2 class="Menu__Title">M E N U</h2>
-                    <a href="#">File 1</a>
-                    <a href="#">File 2</a>
-                    <a href="#">File 3</a>
-                    <a href="#">Date</a>
+                    % for name in file_names_ids:
+                        <a href={{file_names_ids[name]}}>File: {{name}}</a>
+                    % end
+                    <div>
+                        Enter timeframe to check work commits:
+                    </div>
+                    <div>
+                        <label for="start">Start</label>
+                        <input type="date" id="start" name="start"
+                        value="yyyy-mm-dd"
+                        min="2017-01-01" />
+                    </div>
 
+                    <div>
+                        <label for="end">End</label>
+                        <input type="date" id="end" name="end"
+                        value="yyyy-mm-dd"
+                        min="2017-01-01"/>
+                    </div>
+                    <button class="mdl-button mdl-button--raised">Submit</button> 
                 </nav>
             </div>
 
@@ -76,9 +91,13 @@
 
                     // Optional; add a title and set the width and height of the chart
                     var options = {
-                        'title': 'Total overall contribution, by author, in {{drive_name}}',
+                        'title': 'Overall contribution, by author, in {{drive_name}}',
                         'width': 550,
-                        'height': 300
+                        'height': 300,
+                        'backgroundColor': {
+                            'fill': '#FFFAF0',
+                            'fillopacity': 0.5
+                        }
                     };
 
                     // Display the chart inside the <div> element with id="piechart"
