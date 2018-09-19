@@ -84,7 +84,9 @@ def timelineChart(dictInput):
 if __name__ == "__main__":
     myDict = {"Test 1": 10, "Test 2": 20, "Test 3": 30}
 
-    # myPlot = totalContributionChart(myDict)
+    myPlot = totalContributionChart(myDict)
+
+    # print(mpld3.fig_to_html(myPlot))
 
     dict2 = {"Peak Khor": {"2018week36": 2, "2018week37": 5},
              "Clare": {"2018week36": 5, "2018week37": 0}}
