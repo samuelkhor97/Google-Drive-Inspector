@@ -14,16 +14,6 @@ import traceback
 import sys
 import time
 
-# If modifying these scopes, delete the file token.json.
-SCOPES = 'https://www.googleapis.com/auth/drive.readonly'
-
-store = file.Storage('token.json')
-creds = store.get()
-if not creds or creds.invalid:
-    flow = client.flow_from_clientsecrets('credentials.json', SCOPES)
-    creds = tools.run_flow(flow, store)
-service = build('drive', 'v3', http=creds.authorize(Http()))
-
 
 def getRevisionsForFile(drive_file):
     """
@@ -176,4 +166,14 @@ def WIP_request_handler():
     return return_string
 
 if __name__ == '__main__':
+    # If modifying these scopes, delete the file token.json.
+    SCOPES = 'https://www.googleapis.com/auth/drive.readonly'
+
+    store = file.Storage('token.json')
+    creds = store.get()
+    if not creds or creds.invalid:
+        flow = client.flow_from_clientsecrets('credentials.json', SCOPES)
+        creds = tools.run_flow(flow, store)
+    service = build('drive', 'v3', http=creds.authorize(Http()))
+
     main()
