@@ -106,6 +106,9 @@ def loading(team_drive_id):
 
 
 def get_file_names_ids(team_drive_id):
+    """
+    @:return file_names_ids_dict: (dict) {key:file_name(string), value:file_id, key:...}
+    """
     files_list = listFilesForTeamDrive(
         team_drive_id, service)[team_drive_id]
 
