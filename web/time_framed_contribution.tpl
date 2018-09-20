@@ -6,20 +6,23 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
     <link rel="stylesheet" href="https://code.getmdl.io/1.3.0/material.indigo-pink.min.css">
-    <link rel="stylesheet" href="../static/Assignment1CSS.css" />
+    <link rel="stylesheet" href="../../../static/Assignment1CSS.css" />
     <meta name="apple-mobile-web-app-capable" content="yes" />
     <meta name="mobile-web-app-capable" content="yes" />
 
 </head>
 
-<body id="mainPageBackground" background="../static/Background_for_all.jpg">
+<body id="mainPageBackground" background="../../../static/Background_for_all.jpg">
     <div>
         <header>
             <div id="mainPageHeader">
                 Make marking easy
             </div>
             <div id="projectName">
-                {{drive_name}}
+                {{drive_name}} 
+            </div>
+            <div id="projectName">
+                Contribution breakdown from {{start_date}} to {{end_date}}
             </div>
         </header>
 
@@ -29,10 +32,6 @@
 
             <div class="MenuContainer">
                 <nav class="Menu">
-                    <h2 class="Menu__Title">M E N U</h2>
-                    % for name in file_names_ids:
-                        <a href={{file_names_ids[name]}}>File: {{name}}</a>
-                    % end
                     <div>
                         Enter timeframe to check work commits:
                     </div>
@@ -62,8 +61,12 @@
                 <i class="material-icons">home</i>
             </button>
 
-            <button id="uploadButton" class="mdl-button mdl-js-button mdl-button--fab mdl-js-ripple-effect mdl-button--colored" onclick="logoutPrompt()">
+            <button id="uploadButton" class="mdl-button mdl-js-button mdl-button--fab mdl-js-ripple-effect mdl-button--colored" onclick="returnTeamDrive()">
                 <i class="material-icons">arrow_back</i>
+            </button>
+
+            <button id="uploadButton" class="mdl-button mdl-js-button mdl-button--fab mdl-js-ripple-effect mdl-button--colored" onclick="logoutPrompt()">
+                <i class="material-icons">settings_power</i>
             </button>
 
             <div id="mainpiechart"></div>
@@ -90,7 +93,7 @@
                 ];
                 chartData = {{!contributions}};
                 if (isEmpty(chartData)) {
-                    setTimeout(function() {alert("No data to be showned.");},2000);
+                    setTimeout(function() {alert("No data to be showned.");},1500);
                 }
                 for (user in chartData) {
                     contributionsArray.push([user, chartData[user]]);
@@ -102,7 +105,7 @@
 
                     // Optional; add a title and set the width and height of the chart
                     var options = {
-                        'title': 'Overall contribution, by author, in {{drive_name}}',
+                        'title': 'Time-framed contribution, by author, in {{drive_name}}',
                         'width': 550,
                         'height': 300,
                         'backgroundColor': {
@@ -146,6 +149,10 @@
             if (confirm("Logout?")) {
                 window.location.href = "/logout";
             }
+        }
+
+        function returnTeamDrive() {
+            window.location.href = "/team_drive_contributions/{{drive_id}}";
         }
 
         function submitDate() {

@@ -120,7 +120,7 @@ class D_Parser:
 
     def calculate_file_contribution(self, file_id):
         """
-        Return number of contributions for each member for the file specifies by file_id
+        Return number of contributions for each member for the file specified by file_id
         @:return all_users_contribution: (dict) {key:(string) user, value: (int) number_of_contributions}
         """
         all_users = []
@@ -137,6 +137,23 @@ class D_Parser:
                 all_users_contribution[user] += 1
 
         return all_users_contribution
+
+    def calculate_file_contribution_percentage(self, file_id):
+        """
+        Return percentage of contributions for each member for the file 
+        @:return contribution_percentage: (dict) {key:(string) user, value: (int) contributions_percentage}
+        """
+
+        file_contribution = self.calculate_file_contribution(file_id)
+
+        total_file_contributions_by_all = sum(file_contribution.values())
+
+        contribution_percentage = {}
+        for user in file_contribution:
+            contribution_percentage[user] = round(file_contribution[
+                user] / total_file_contributions_by_all * 100, 2)
+
+        return contribution_percentage
 
     def calculate_total_contribution_within_timeframe(self, time1, time2):
         """
@@ -164,3 +181,22 @@ class D_Parser:
                 all_users_contribution[user] += 1
 
         return all_users_contribution
+
+    def calculate_total_contribution_within_timeframe_percentage(self, time1, time2):
+        """
+        Return percentage of contributions for each member for the drive within timeframe 
+        @:return contribution_percentage: (dict) {key:(string) user, value: (int) contributions_percentage}
+        """
+
+        contribution_within_timeframe = self.calculate_total_contribution_within_timeframe(
+            time1, time2)
+
+        total_contributions_by_all = sum(
+            contribution_within_timeframe.values())
+
+        contribution_percentage = {}
+        for user in contribution_within_timeframe:
+            contribution_percentage[user] = round(contribution_within_timeframe[
+                user] / total_contributions_by_all * 100, 2)
+
+        return contribution_percentage

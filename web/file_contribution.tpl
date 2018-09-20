@@ -2,7 +2,7 @@
 <html>
 
 <head>
-    <title>{{drive_name}}</title>
+    <title>{{file_name}}</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
     <link rel="stylesheet" href="https://code.getmdl.io/1.3.0/material.indigo-pink.min.css">
@@ -19,7 +19,7 @@
                 Make marking easy
             </div>
             <div id="projectName">
-                {{drive_name}}
+                {{file_name}}
             </div>
         </header>
 
@@ -33,23 +33,6 @@
                     % for name in file_names_ids:
                         <a href={{file_names_ids[name]}}>File: {{name}}</a>
                     % end
-                    <div>
-                        Enter timeframe to check work commits:
-                    </div>
-                    <div>
-                        <label for="start">Start</label>
-                        <input type="date" id="start" name="start"
-                        value="yyyy-mm-dd"
-                        min="2016-01-01" />
-                    </div>
-
-                    <div>
-                        <label for="end">End</label>
-                        <input type="date" id="end" name="end"
-                        value="yyyy-mm-dd"
-                        min="2016-01-01"/>
-                    </div>
-                    <button class="mdl-button mdl-button--raised" onclick='submitDate()'>Submit</button> 
                 </nav>
             </div>
 
@@ -62,8 +45,12 @@
                 <i class="material-icons">home</i>
             </button>
 
-            <button id="uploadButton" class="mdl-button mdl-js-button mdl-button--fab mdl-js-ripple-effect mdl-button--colored" onclick="logoutPrompt()">
+            <button id="uploadButton" class="mdl-button mdl-js-button mdl-button--fab mdl-js-ripple-effect mdl-button--colored" onclick="returnTeamDrive()">
                 <i class="material-icons">arrow_back</i>
+            </button>
+
+            <button id="uploadButton" class="mdl-button mdl-js-button mdl-button--fab mdl-js-ripple-effect mdl-button--colored" onclick="logoutPrompt()">
+                <i class="material-icons">settings_power</i>
             </button>
 
             <div id="mainpiechart"></div>
@@ -71,14 +58,6 @@
             <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
 
             <script type="text/javascript">
-                function isEmpty(obj) {
-                    for(var key in obj) {
-                        if(obj.hasOwnProperty(key)) {
-                            return false;
-                        }
-                    }
-                    return true;
-                }
                 // Load google charts
                 google.charts.load('current', {
                     'packages': ['corechart']
@@ -88,10 +67,7 @@
                 let contributionsArray = [
                     ['Author', 'Revision Commits']
                 ];
-                chartData = {{!contributions}};
-                if (isEmpty(chartData)) {
-                    setTimeout(function() {alert("No data to be showned.");},2000);
-                }
+                chartData = {{!contribution}};
                 for (user in chartData) {
                     contributionsArray.push([user, chartData[user]]);
                 }
@@ -102,7 +78,7 @@
 
                     // Optional; add a title and set the width and height of the chart
                     var options = {
-                        'title': 'Overall contribution, by author, in {{drive_name}}',
+                        'title': 'Overall contribution, by author, in {{file_name}}',
                         'width': 550,
                         'height': 300,
                         'backgroundColor': {
@@ -123,10 +99,10 @@
                     <th>Revision Commits</th>
                     <th>% of Contributions</th>
                 </tr>
-                % for (user, contribution), (user, percent) in zip(contributions.items(), contributions_percent.items()):
+                % for (user, file_contribution), (user, percent) in zip(contribution.items(), contribution_percent.items()):
                 <tr>
                     <td>{{user}}</td>
-                    <td>{{contribution}}</td>
+                    <td>{{file_contribution}}</td>
                     <td>{{percent}}</td>
                 <tr>
                 % end
@@ -137,31 +113,17 @@
 
     <!-- Javascript files below: -->
     <script>
-        drive = '{{drive_name}}';
         function returnHome() {
-            window.location.href = "/team_drives";
+            window.location.href = "/team_drives"
         }
 
+        function returnTeamDrive() {
+            window.location.href = "/team_drive_contributions/{{current_drive}}"
+        }
         function logoutPrompt() {
             if (confirm("Logout?")) {
                 window.location.href = "/logout";
             }
-        }
-
-        function submitDate() {
-            startDateObj = document.getElementById('start')
-            endDateObj = document.getElementById('end')
-            startDate = startDateObj.value;
-            endDate = endDateObj.value;
-
-            if (startDate > endDate) {
-                alert("End date must be later than Start date!")
-            } else if ((startDate < startDateObj.min) || (endDate < endDateObj.min)) {
-                alert("Invalid date earlier than " + startDateObj.min)
-            } else {
-            window.location.href = "/timeContribution/" + startDate + "/" + endDate + "/" + drive;
-            }
-
         }
     </script>
 </body>
