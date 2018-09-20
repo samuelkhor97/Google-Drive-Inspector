@@ -145,18 +145,6 @@ def main():
     for file_id in file_revisions:
         dparser.print_revisions_user(file_id)
 
-
-def WIP_request_handler():
-    file_revisions = get_file_revisions()
-    dparser = D_Parser(file_revisions)
-    return_string = ""
-
-    for file_id in file_revisions:
-        return_string += str.join('<br />',
-                                  dparser.list_revisions_user(file_id)) + '<hr />'
-
-    return return_string
-
 if __name__ == '__main__':
     # If modifying these scopes, delete the file token.json.
     SCOPES = 'https://www.googleapis.com/auth/drive.readonly'

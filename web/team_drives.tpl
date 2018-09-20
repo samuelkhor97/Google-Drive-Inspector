@@ -29,6 +29,7 @@
     <!-- <button class="Group1">Team GitRekt</button>
                 <button class="Group2">Team RandomName</button> -->
     % for drive_name in drive_ids:
+    <!-- href='/loading/<team_drive_id>' -->
     <a href={{drive_ids[drive_name]}} style="
                             position:relative;
                             text-align: center;
