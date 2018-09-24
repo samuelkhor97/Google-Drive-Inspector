@@ -63,7 +63,7 @@
             </button>
 
             <button id="uploadButton" class="mdl-button mdl-js-button mdl-button--fab mdl-js-ripple-effect mdl-button--colored" onclick="logoutPrompt()">
-                <i class="material-icons">arrow_back</i>
+                <i class="material-icons">exit_to_app</i>
             </button>
 
             <div id="mainpiechart"></div>

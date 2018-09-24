@@ -205,6 +205,52 @@ input[type=password]{
     display: block;
     background-color:azure;
 }
+
+.buttonStyle
+{
+  position:relative;
+  text-align: center;
+  top:250px;
+  left:300px;
+  width:200px;
+  height:200px;
+  background-color:black;
+  color:deeppink;
+  border-top: 1px solid #CCCCCC;
+  border-right: 1px solid #333333;
+  border-bottom: 1px solid #333333;
+  border-left: 1px solid #CCCCCC;"
+  position:relative;
+  font: bold 20px Arial;
+  padding: 2px 6px 2px 6px;
+  cursor:pointer;
+  transition:800ms ease all;
+  outline:none;
+}
+.buttonStyle:hover{
+    background:#fff;
+  color:black;
+}
+.buttonStyle:before,.buttonStyle:after{
+    content:'';
+  position:absolute;
+  top:0;
+  right:0;
+  height:2px;
+  width:0;
+  background-color:darkblue;
+  transition:400ms ease all;
+}
+.buttonStyle:after{
+  right:inherit;
+  top:27px;
+  left:0;
+  bottom:0;
+}
+.buttonStyle:hover:before,.buttonStyle:hover:after{
+    width:100%;
+  transition:800ms ease all;
+}
 /*-----------------page3--------------------------------*/
 #projectName
 {

@@ -30,23 +30,7 @@
                 <button class="Group2">Team RandomName</button> -->
     % for drive_name in drive_ids:
     <!-- href='/loading/<team_drive_id>' -->
-    <a href={{drive_ids[drive_name]}} style="
-                            position:relative;
-                            text-align: center;
-                            top:250px;
-                            left:300px;
-                            width:200px;
-                            height:200px;
-
-                            font: bold 11px Arial;
-                              text-decoration: none;
-                              background-color: #EEEEEE;
-                              color: #333333;
-                              padding: 2px 6px 2px 6px;
-                              border-top: 1px solid #CCCCCC;
-                              border-right: 1px solid #333333;
-                              border-bottom: 1px solid #333333;
-                              border-left: 1px solid #CCCCCC;">{{drive_name}}</a> 
+    <a href={{drive_ids[drive_name]}} class=buttonStyle>{{drive_name}}</a> 
     % end
 
     </div>
