@@ -21,7 +21,7 @@
             <div id="projectName">
                 {{drive_name}} 
             </div>
-            <div id="projectName">
+            <div id="projectName1">
                 Contribution breakdown from {{start_date}} to {{end_date}}
             </div>
         </header>
@@ -61,11 +61,11 @@
                 <i class="material-icons">home</i>
             </button>
 
-            <button id="uploadButton" class="mdl-button mdl-js-button mdl-button--fab mdl-js-ripple-effect mdl-button--colored" onclick="returnTeamDrive()">
+            <button id="backButton" class="mdl-button mdl-js-button mdl-button--fab mdl-js-ripple-effect mdl-button--colored" onclick="returnTeamDrive()">
                 <i class="material-icons">arrow_back</i>
             </button>
 
-            <button id="uploadButton" class="mdl-button mdl-js-button mdl-button--fab mdl-js-ripple-effect mdl-button--colored" onclick="logoutPrompt()">
+            <button id="exitButton2" class="mdl-button mdl-js-button mdl-button--fab mdl-js-ripple-effect mdl-button--colored" onclick="logoutPrompt()">
                 <i class="material-icons">settings_power</i>
             </button>
 

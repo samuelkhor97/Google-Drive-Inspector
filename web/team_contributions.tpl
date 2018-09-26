@@ -62,7 +62,7 @@
                 <i class="material-icons">home</i>
             </button>
 
-            <button id="uploadButton" class="mdl-button mdl-js-button mdl-button--fab mdl-js-ripple-effect mdl-button--colored" onclick="logoutPrompt()">
+            <button id="exitButton" class="mdl-button mdl-js-button mdl-button--fab mdl-js-ripple-effect mdl-button--colored" onclick="logoutPrompt()">
                 <i class="material-icons">exit_to_app</i>
             </button>
 
