@@ -32,6 +32,7 @@ drive_ids = None
 file_names_ids_dict = None
 current_drive_id = None
 flow = None
+port = 7878
 
 
 @route("/static/<filepath>")
@@ -54,7 +55,9 @@ def login():
     if not creds or creds.invalid:
         global flow
         flow = client.flow_from_clientsecrets(
-            'credentials.json', scope=SCOPES, redirect_uri='http://localhost:7878/login/return')
+            'credentials.json', scope=SCOPES,
+            redirect_uri='http://localhost:{}}/login/return'.format(port))
+
         auth_uri = flow.step1_get_authorize_url()
         return redirect(auth_uri)
     else:
@@ -194,6 +197,6 @@ def logout():
     os.remove('token.json')
     return redirect('/')
 
-webbrowser.open('http://localhost:7878')
+webbrowser.open('http://localhost:{}'.format(port))
 
-run(host='localhost', port=7878)
+run(host='localhost', port=port)
