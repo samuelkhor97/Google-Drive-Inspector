@@ -189,8 +189,8 @@ input[type=password]{
 */
 #backButton3
 {
-    left:-610px;
-    top :-100px;
+    left:625px;
+    top :-40px;
     margin-top: 5px;
     display: block;
     background-color:black;
@@ -261,13 +261,31 @@ input[type=password]{
     position:relative;
     text-align: center;
     top:65px;
-    left:-400px;
+    left:0px;
 }
 
-#uploadButton
+#exitButton
 {
-    left:-525px;
+    left:625px;
     top :-40px;
+    margin-top: 5px;
+    display: block;
+    background-color:black;
+}
+
+#exitButton1
+{
+    left:625px;
+    top :0px;
+    margin-top: 5px;
+    display: block;
+    background-color:black;
+}
+
+#exitButton2
+{
+    left:625px;
+    top :-105px;
     margin-top: 5px;
     display: block;
     background-color:black;
@@ -478,6 +496,18 @@ label {
 }
 /*-----------------page4---------------------------------*/
 
+#projectName1
+{
+    font-weight:600;
+    font-size:30px;
+    font-family: 'Bookman',serif;
+    color:black;
+    position:relative;
+    text-align: center;
+    top:85px;
+    left:0px;
+}
+
 #homeButton
 {
     left:-600px;
@@ -486,6 +516,16 @@ label {
     display: block;
     background-color:black;
 }
+
+#homeButton1
+{
+    left:-600px;
+    top :-60px;
+    margin-top: 5px;
+    display: block;
+    background-color:black;
+}
+
 #backButton
 {
     left:-525px;

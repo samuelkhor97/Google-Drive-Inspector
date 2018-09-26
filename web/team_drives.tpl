@@ -34,11 +34,11 @@
     % end
 
     </div>
-    <button id="uploadButton" class="mdl-button mdl-js-button mdl-button--fab mdl-js-ripple-effect mdl-button--colored" onclick="logoutPrompt()">
-        <i class="material-icons">arrow_back</i>
+    <button id="exitButton1" class="mdl-button mdl-js-button mdl-button--fab mdl-js-ripple-effect mdl-button--colored" onclick="logoutPrompt()">
+        <i class="material-icons">exit_to_app</i>
     </button>
     <div>
-        <button id="backButton3" class="mdl-button mdl-js-button mdl-button--fab mdl-js-ripple-effect mdl-button--colored" onclick="returnHome()">
+        <button id="homeButton1" class="mdl-button mdl-js-button mdl-button--fab mdl-js-ripple-effect mdl-button--colored" onclick="returnHome()">
             <i class="material-icons">home</i>
         </button>
 

@@ -30,20 +30,6 @@
                     </div>
 
             </div>
-            <div>
-                <h5 class="style">
-                <div> Created by Team GitRekt</div>
-                <div class="images"><img src="static/Sam.jpg" width=300px height=300px></div>
-                <div >Khor Peak Siew</div>
-                <div>
-                <img src="static/bok.jpg" width=300px height=300px>
-                <img src="static/tiong.jpg" width=300px height=300px>
-                <img src="static/Jeremy.jpg" width=300px height=300px>
-                <img src="static/Clarisse.jpg" width=300px height=300px></div>
-                <div class="container">Bok Zhui Kit &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Tay Tiong Guan &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Jeremy Lau &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Clarisse Cheah</div></h5>
-            </div>
-            
-            
         </div>
    
     </body>
