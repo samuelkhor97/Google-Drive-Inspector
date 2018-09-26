@@ -66,7 +66,7 @@
             </button>
 
             <button id="exitButton2" class="mdl-button mdl-js-button mdl-button--fab mdl-js-ripple-effect mdl-button--colored" onclick="logoutPrompt()">
-                <i class="material-icons">settings_power</i>
+                <i class="material-icons">exit_to_app</i>
             </button>
 
             <div id="mainpiechart"></div>
