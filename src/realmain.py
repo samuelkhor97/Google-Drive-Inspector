@@ -56,7 +56,7 @@ def login():
         global flow
         flow = client.flow_from_clientsecrets(
             'credentials.json', scope=SCOPES,
-            redirect_uri='http://localhost:{}}/login/return'.format(port))
+            redirect_uri='http://localhost:{}/login/return'.format(port))
 
         auth_uri = flow.step1_get_authorize_url()
         return redirect(auth_uri)
