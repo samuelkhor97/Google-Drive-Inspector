@@ -24,7 +24,7 @@
                     <div class="btn-wrapper">
                       <div class="btn-wrapper__container">
                         <div class="btn-inner">
-                          <a href="/login" ><class="btn-inner__text" href="#">Login</a>
+                          <a href="/login" ><class="btn-inner__text">Login</a>
                         </div>
                       </div>
                     </div>

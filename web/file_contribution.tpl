@@ -72,11 +72,10 @@
                     contributionsArray.push([user, chartData[user]]);
                 }
 
-                // Draw the chart and set the chart values
+                // Draw the Pie chart and set the chart values
                 function drawChart() {
                     var data = google.visualization.arrayToDataTable(contributionsArray);
 
-                    // Optional; add a title and set the width and height of the chart
                     var options = {
                         'title': 'Overall contribution, by author, in {{file_name}}',
                         'width': 550,
@@ -87,7 +86,7 @@
                         }
                     };
 
-                    // Display the chart inside the <div> element with id="piechart"
+                    // Display the chart inside the <div> element with id="mainpiechart"
                     var chart = new google.visualization.PieChart(document.getElementById('mainpiechart'));
                     chart.draw(data, options);
                 }
@@ -98,6 +97,7 @@
                     <th>Author</th>
                     <th>Revision Commits</th>
                     <th>% of Contributions</th>
+                <!-- Adding table elements dynamically -->
                 </tr>
                 % for (user, file_contribution), (user, percent) in zip(contribution.items(), contribution_percent.items()):
                 <tr>

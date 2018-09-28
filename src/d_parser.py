@@ -1,12 +1,20 @@
 """
-Prototype of parser class, ver1: take in an array of revisions data, provide functions extract data by file_id
+@author: Samuel, Tiong
+@since: 25/8/2018
+@modified: 28/9/2018
+
 """
+
 import time
 
 
 class D_Parser:
 
     def __init__(self, files_revisions):
+        """
+        @:files_revisions: (dict) A dict containing files' id and
+        their corresponding list of Revision resources
+        """
         self.file_revs = files_revisions
 
     def _get_revisions_by_id(self, file_id):

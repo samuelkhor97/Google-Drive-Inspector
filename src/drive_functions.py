@@ -1,7 +1,7 @@
 """
-@author: Samuel
+@author: Samuel, Tiong
 @since: 25/8/2018
-@modified: 16/9/2018
+@modified: 28/9/2018
 
 """
 from __future__ import print_function
@@ -10,8 +10,6 @@ from httplib2 import Http
 from oauth2client import file, client, tools
 from googleapiclient import errors
 from d_parser import D_Parser
-import traceback
-import sys
 import time
 
 
@@ -36,12 +34,8 @@ def getRevisionsForFile(drive_file, service):
         file_revisions[key] = file_revisions_list.get('revisions')
 
     except errors.HttpError as e:
-        # print(str(e))
-        # print(traceback.format_exc())
         pass
-    # for i in files_revisions:
-        # print("file id: " + i)
-        # print(files_revisions[i][0]['modifiedTime'])
+
     return file_revisions
 
 
@@ -121,39 +115,6 @@ def get_file_revisions(drive_id, service):
     print('time elapsed for getting team_drive_files: ' + str(end - start))
 
     for i in file_revisions:
-        # print(i, file_revisions[i])
         break
+
     return file_revisions
-
-
-def main():
-    file_revisions = get_file_revisions()
-
-    dparser = D_Parser(file_revisions)
-    for file_id in file_revisions:
-        print(file_id, end='')
-        # print(dparser.calculate_file_contribution(file_id))
-        print(dparser.calculate_total_contribution_within_timeframe(
-            '2018-05-19', '2018-05-20'))
-
-        break
-    sys.exit(0)
-    print(dparser.calculate_total_contribution())
-    print(dparser.calculate_total_contribution_percentage())
-    print(dparser.calculate_total_contribution_with_week())
-
-    for file_id in file_revisions:
-        dparser.print_revisions_user(file_id)
-
-if __name__ == '__main__':
-    # If modifying these scopes, delete the file token.json.
-    SCOPES = 'https://www.googleapis.com/auth/drive.readonly'
-
-    store = file.Storage('token.json')
-    creds = store.get()
-    if not creds or creds.invalid:
-        flow = client.flow_from_clientsecrets('credentials.json', SCOPES)
-        creds = tools.run_flow(flow, store)
-    service = build('drive', 'v3', http=creds.authorize(Http()))
-
-    main()

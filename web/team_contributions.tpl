@@ -88,6 +88,7 @@
                 let contributionsArray = [
                     ['Author', 'Revision Commits']
                 ];
+                // Load contributions data passed into template
                 chartData = {{!contributions}};
                 if (isEmpty(chartData)) {
                     setTimeout(function() {alert("No data to be showned.");},2000);
@@ -96,11 +97,10 @@
                     contributionsArray.push([user, chartData[user]]);
                 }
 
-                // Draw the chart and set the chart values
+                // Draw the Pie chart and set the chart values
                 function drawChart() {
                     var data = google.visualization.arrayToDataTable(contributionsArray);
 
-                    // Optional; add a title and set the width and height of the chart
                     var options = {
                         'title': 'Overall contribution, by author, in {{drive_name}}',
                         'width': 550,
@@ -111,7 +111,7 @@
                         }
                     };
 
-                    // Display the chart inside the <div> element with id="piechart"
+                    // Display the chart inside the <div> element with id="mainpiechart"
                     var chart = new google.visualization.PieChart(document.getElementById('mainpiechart'));
                     chart.draw(data, options);
                 }
@@ -122,6 +122,7 @@
                     <th>Author</th>
                     <th>Revision Commits</th>
                     <th>% of Contributions</th>
+                <!-- Adding table elements dynamically -->
                 </tr>
                 % for (user, contribution), (user, percent) in zip(contributions.items(), contributions_percent.items()):
                 <tr>
@@ -138,6 +139,7 @@
     <!-- Javascript files below: -->
     <script>
         drive = '{{drive_name}}';
+
         function returnHome() {
             window.location.href = "/team_drives";
         }
@@ -148,6 +150,7 @@
             }
         }
 
+        // Take in dates submitted by user and redirect to contribution page
         function submitDate() {
             startDateObj = document.getElementById('start')
             endDateObj = document.getElementById('end')
