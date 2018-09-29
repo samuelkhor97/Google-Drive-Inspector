@@ -145,6 +145,7 @@ def team_contributions(team_drive_id):
     dparser = D_Parser(file_revisions)
     all_users_contributions = dparser.calculate_total_contribution()
     all_users_contributions_percentage = dparser.calculate_total_contribution_percentage()
+    users_list, all_users_weekly_contributions = dparser.calculate_contribution_with_week()
 
     # Finding the drive_name in drive_ids dict
     drive_name = list(drive_ids.keys())[list(
@@ -153,6 +154,8 @@ def team_contributions(team_drive_id):
                     drive_name=drive_name,
                     contributions=all_users_contributions,
                     contributions_percent=all_users_contributions_percentage,
+                    weekly_contributions=all_users_weekly_contributions,
+                    users_list=users_list,
                     file_names_ids=file_names_ids_dict)
 
 
@@ -163,7 +166,8 @@ def file_contribution(file_id):
     file_contribution = dparser.calculate_file_contribution(file_id)
     file_contribution_percentage = dparser.calculate_file_contribution_percentage(
         file_id)
-
+    users_list, all_users_weekly_contributions = dparser.calculate_contribution_with_week(
+        file_id)
     # Finding the file_name in file_names_ids dict
     file_name = list(file_names_ids_dict.keys())[list(
         file_names_ids_dict.values()).index('/file_contribution/' + str(file_id))]
@@ -172,6 +176,8 @@ def file_contribution(file_id):
                     file_name=file_name,
                     contribution=file_contribution,
                     contribution_percent=file_contribution_percentage,
+                    weekly_contributions=all_users_weekly_contributions,
+                    users_list=users_list,
                     file_names_ids=file_names_ids_dict)
 
 

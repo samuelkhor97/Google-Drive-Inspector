@@ -54,6 +54,7 @@
             </button>
 
             <div id="mainpiechart"></div>
+            <div id="maintimeline"></div>
 
             <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
 
@@ -62,18 +63,21 @@
                 google.charts.load('current', {
                     'packages': ['corechart']
                 });
+                // Draw the Pie chart of contributions onLoad
                 google.charts.setOnLoadCallback(drawChart);
-
-                let contributionsArray = [
-                    ['Author', 'Revision Commits']
-                ];
-                chartData = {{!contribution}};
-                for (user in chartData) {
-                    contributionsArray.push([user, chartData[user]]);
-                }
+                // Draw the Timeline of contributions onLoad
+                google.charts.setOnLoadCallback(drawTimeline);
 
                 // Draw the Pie chart and set the chart values
                 function drawChart() {
+                    let contributionsArray = [
+                    ['Author', 'Revision Commits']
+                    ];
+                    // Load contributions data passed into template
+                    chartData = {{!contribution}};
+                    for (user in chartData) {
+                        contributionsArray.push([user, chartData[user]]);
+                    }
                     var data = google.visualization.arrayToDataTable(contributionsArray);
 
                     var options = {
@@ -88,6 +92,51 @@
 
                     // Display the chart inside the <div> element with id="mainpiechart"
                     var chart = new google.visualization.PieChart(document.getElementById('mainpiechart'));
+                    chart.draw(data, options);
+                }
+
+                // Draw the Timeline and set the values
+                function drawTimeline() {
+                    // Load contributions data passed into template
+                    let chartData = {{!weekly_contributions}};
+                    let usersList = {{!users_list}};
+                    let contributionsArray = [];
+  
+                    contributionsArray.push(['Users'].concat(usersList));
+                    // Pushing contributions data
+                    for (week in chartData) {
+                        dataArray = [week];
+                        for (user in chartData[week]) {
+                            dataArray.push(
+                                chartData[week][user]);
+                        }
+                        contributionsArray.push(
+                                dataArray);
+                    }
+                    var data = google.visualization.arrayToDataTable(contributionsArray);
+
+                    var options = {
+                        'title': 'File Contribution Timeline in {{file_name}}',
+                        'height': 350,
+                        'backgroundColor': {
+                            'fill': '#FFFAF0',
+                            'fillopacity': 0.5
+                        },
+                        'legend': { 
+                            'position': 'top', 
+                            'maxLines': 2 
+                        },
+                        'bar': { 
+                            'groupWidth': '75%' 
+                        },
+                        'isStacked': true,
+                        'vAxis': {
+                            'minValue': 0
+                        }
+                    };
+
+                    // Display the chart inside the <div> element with id="maintimeline"
+                    var chart = new google.visualization.ColumnChart(document.getElementById('maintimeline'));
                     chart.draw(data, options);
                 }
             </script>
