@@ -39,7 +39,7 @@ class D_Parser:
 
     def calculate_total_contribution(self):
         """
-        Return number of contributions for each member of team drive 
+        Return number of contributions for each member of team drive
         @:return all_users_contribution: (dict) {key:(string) user, value: (int) number_of_contributions}
         """
         all_users = []
@@ -59,7 +59,7 @@ class D_Parser:
 
     def calculate_total_contribution_percentage(self):
         """
-        Return percentage of contributions for each member of team drive 
+        Return percentage of contributions for each member of team drive
         @:return contribution_percentage: (dict) {key:(string) user, value: (int) contributions_percentage}
         """
 
@@ -77,7 +77,7 @@ class D_Parser:
     def _process_date(self, date):
         """
         Process RFC 3339-date-time to "YYYYweekWW" format
-        @:return str(year) + "week" + str(week): (string) A string containing year and week 
+        @:return str(year) + "week" + str(week): (string) A string containing year and week
         """
 
         # Getting the date yy-mm-dd
@@ -91,16 +91,21 @@ class D_Parser:
 
         return str(year) + "week" + str(week)
 
-    def calculate_total_contribution_with_week(self):
+    def calculate_contribution_with_week(self, file_id=None):
         """
-        Return number of contributions for each member of team drive at particular duration
-        @:return all_users_contribution: (dict) {UserName1(String): 
-        {whichWeek(String):numberOfVersionContributed(int),...}}
+        Return users_list and number of contributions for each member of team drive at particular duration
+        @:file_id: (String) The file ID
+        @:return all_users_contribution: (tuple) (users_list(set),
+                    {whichWeek1(String):
+                        {UserName1(String):numberOfVersionContributed(int),
+                        UserName2(String):numberOfVersionContributed(int)...}}
         """
         all_users = []
-
-        for file_id in self.file_revs:
-            all_users = all_users + self.list_revisions_user(file_id)
+        if file_id == None:
+            for file_id in self.file_revs:
+                all_users = all_users + self.list_revisions_user(file_id)
+        else:
+            all_users = self.list_revisions_user(file_id)
 
         for i in range(len(all_users)):
             # convert modifiedTime into "YYYYweekWW"
@@ -108,23 +113,48 @@ class D_Parser:
                             self._process_date(all_users[i][1]))
 
         # all_users: [(userA, YYYYweekWW), (userB, YYYYweekWW),...]
-        # all_user_contribution = {UserName1(String):
-        # {whichWeek(String):numberOfVersionContributed(int),...}}
+        # all_user_contribution = {whichWeek1(String):
+        # {UserName1(String):numberOfVersionContributed(int),...}}
         all_users_contribution = {}
+        # Keep track of users in every week
+        users_list = set()
         for user in all_users:
-            # Add user in the all_users_contribution if not found in the dict
-            if user[0] not in all_users_contribution:
-                all_users_contribution[user[0]] = {}
-                all_users_contribution[user[0]][user[1]] = 1
+            # Add whichWeek into the all_users_contribution if not found in the
+            # dict
+            if user[1] not in all_users_contribution:
+                all_users_contribution[user[1]] = {}
+                all_users_contribution[user[1]][user[0]] = 1
             else:
-                # Add the week into the user contribution if not found
-                if user[1] not in all_users_contribution[user[0]]:
-                    all_users_contribution[user[0]][user[1]] = 1
+                # Add the userName into the user week contribution if not found
+                if user[0] not in all_users_contribution[user[1]]:
+                    all_users_contribution[user[1]][user[0]] = 1
                 else:
                     # Increment user contribution count for corresponding week
-                    all_users_contribution[user[0]][user[1]] += 1
+                    all_users_contribution[user[1]][user[0]] += 1
 
-        return all_users_contribution
+            users_list.add(user[0])
+
+        # Add in user with zero contribution into each week
+        for week in all_users_contribution:
+            if not all(user in all_users_contribution[week] for user in users_list):
+                # Perform set operation to find ) contribution users
+                missing_user = users_list - all_users_contribution[week].keys()
+                for i in missing_user:
+                    all_users_contribution[week][i] = 0
+
+        # Sort userName in each week in all_users_contribution
+        for week in all_users_contribution:
+            temp = {}
+            for key in sorted(all_users_contribution[week]):
+                temp[key] = all_users_contribution[week][key]
+            all_users_contribution[week] = temp
+
+        # Convert users_list from set into list
+        users_list = list(users_list)
+        # Sort the userName
+        users_list.sort()
+
+        return (users_list, all_users_contribution)
 
     def calculate_file_contribution(self, file_id):
         """
@@ -148,7 +178,7 @@ class D_Parser:
 
     def calculate_file_contribution_percentage(self, file_id):
         """
-        Return percentage of contributions for each member for the file 
+        Return percentage of contributions for each member for the file
         @:return contribution_percentage: (dict) {key:(string) user, value: (int) contributions_percentage}
         """
 
@@ -168,7 +198,7 @@ class D_Parser:
         Return number of contributions for each member for the drive within timeframe
         @:time1: (string) Lower bound for the time frame (included)
         @:time2: (string) Upper bound for the time frame (included)
-        @:return all_users_contribution: (dict) {key:(string) user, value: (int) number_of_contributions} 
+        @:return all_users_contribution: (dict) {key:(string) user, value: (int) number_of_contributions}
         """
 
         # [ (userA, modifiedTime), (userA, modifiedTime), (userB, modifiedTime),... ]
@@ -192,7 +222,7 @@ class D_Parser:
 
     def calculate_total_contribution_within_timeframe_percentage(self, time1, time2):
         """
-        Return percentage of contributions for each member for the drive within timeframe 
+        Return percentage of contributions for each member for the drive within timeframe
         @:return contribution_percentage: (dict) {key:(string) user, value: (int) contributions_percentage}
         """
 

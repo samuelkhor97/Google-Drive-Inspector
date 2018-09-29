@@ -74,6 +74,7 @@
             <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
 
             <script type="text/javascript">
+                // Check if the obj is empty
                 function isEmpty(obj) {
                     for(var key in obj) {
                         if(obj.hasOwnProperty(key)) {

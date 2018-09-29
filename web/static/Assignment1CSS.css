@@ -305,6 +305,13 @@ input[type=password]{
     left:750px;
     top:250px;
 }
+#maintimeline
+{
+    position:absolute;
+    left:10px;
+    top:300px;
+}
+
 .maintable {
     font-family: arial, sans-serif;
     border-collapse: collapse;

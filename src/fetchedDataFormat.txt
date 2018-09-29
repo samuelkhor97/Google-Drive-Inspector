@@ -16,23 +16,38 @@ potentially useful field
 
 
 Timeline Input Data Format
+( 
+users_list(sorted list),
 {
-UserName1(String): {whichWeek(String):numberOfVersionContributed(int),...},
-UserName2(String): {whichWeek(int):numberOfVersionContributed(int),...},
+whichWeek1(String): {UserName1(String):numberOfVersionContributed(int),
+					UserName2(String):numberOfVersionContributed(int)...},
+whichWeek2(String): {UserName1(String):numberOfVersionContributed(int),
+					UserName2(String):numberOfVersionContributed(int)...},
 ...}
+)
+*UserName are sorted
 
 eg
 
-{
-	"Peak Khor":{
-	"2018week36":2,
-	"2018week37":5
+(	{
+		"Clare",
+		"Peak Khor"
 	},
 
-	"Clare":{
-	"2018week36":5,
-	"2018week37":0
+	{
+		"2018week36":{
+			"Clare":5,
+			"Peak Khor":2
+			
+		},
+		"2018week37":{
+			"Clare":3,
+			"Peak Khor":5
+			
+		}
 	}
-}
+)
 
+
+all_users list of contributions in file_revisions passed into d_parser:
 [ (userA, modifiedTime), (userA, modifiedTime), (userB, modifiedTime),  (userC, modifiedTime)... ]

@@ -29,27 +29,23 @@
 
             <div class="MenuContainer">
                 <nav class="Menu">
-                    <h2 class="Menu__Title">M E N U</h2>
+                    <h2 class="Menu__Title">M E N U</h2> 
                     % for name in file_names_ids:
-                        <a href={{file_names_ids[name]}}>File: {{name}}</a>
+                        <a href={{file_names_ids[name]}}>File: {{name}}</a> 
                     % end
                     <div>
                         Enter timeframe to check work commits:
                     </div>
                     <div>
                         <label for="start">Start</label>
-                        <input type="date" id="start" name="start"
-                        value="yyyy-mm-dd"
-                        min="2016-01-01" />
+                        <input type="date" id="start" name="start" value="yyyy-mm-dd" min="2016-01-01" />
                     </div>
 
                     <div>
                         <label for="end">End</label>
-                        <input type="date" id="end" name="end"
-                        value="yyyy-mm-dd"
-                        min="2016-01-01"/>
+                        <input type="date" id="end" name="end" value="yyyy-mm-dd" min="2016-01-01" />
                     </div>
-                    <button class="mdl-button mdl-button--raised" onclick='submitDate()'>Submit</button> 
+                    <button class="mdl-button mdl-button--raised" onclick='submitDate()'>Submit</button>
                 </nav>
             </div>
 
@@ -67,13 +63,15 @@
             </button>
 
             <div id="mainpiechart"></div>
+            <div id="maintimeline"></div>
 
             <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
 
             <script type="text/javascript">
+                // Check if the obj is empty
                 function isEmpty(obj) {
-                    for(var key in obj) {
-                        if(obj.hasOwnProperty(key)) {
+                    for (var key in obj) {
+                        if (obj.hasOwnProperty(key)) {
                             return false;
                         }
                     }
@@ -83,22 +81,26 @@
                 google.charts.load('current', {
                     'packages': ['corechart']
                 });
+                // Draw the Pie chart of contributions onLoad
                 google.charts.setOnLoadCallback(drawChart);
-
-                let contributionsArray = [
-                    ['Author', 'Revision Commits']
-                ];
-                // Load contributions data passed into template
-                chartData = {{!contributions}};
-                if (isEmpty(chartData)) {
-                    setTimeout(function() {alert("No data to be showned.");},2000);
-                }
-                for (user in chartData) {
-                    contributionsArray.push([user, chartData[user]]);
-                }
+                // Draw the Timeline of contributions onLoad
+                google.charts.setOnLoadCallback(drawTimeline);
 
                 // Draw the Pie chart and set the chart values
                 function drawChart() {
+                    let contributionsArray = [
+                    ['Author', 'Revision Commits']
+                    ];
+                    // Load contributions data passed into template
+                    chartData = {{!contributions}};
+                    if (isEmpty(chartData)) {
+                        setTimeout(function() {
+                            alert("No data to be showned.");
+                        }, 2000);
+                    }
+                    for (user in chartData) {
+                        contributionsArray.push([user, chartData[user]]);
+                    }
                     var data = google.visualization.arrayToDataTable(contributionsArray);
 
                     var options = {
@@ -110,9 +112,59 @@
                             'fillopacity': 0.5
                         }
                     };
-
                     // Display the chart inside the <div> element with id="mainpiechart"
                     var chart = new google.visualization.PieChart(document.getElementById('mainpiechart'));
+                    chart.draw(data, options);
+                }
+
+                // Draw the Timeline and set the values
+                function drawTimeline() {
+                    // Load contributions data passed into template
+                    let chartData = {{!weekly_contributions}};
+                    let usersList = {{!users_list}};
+                    let contributionsArray = [];
+
+                    if (isEmpty(chartData)) {
+                        setTimeout(function() {
+                            alert("No data to be showned.");
+                        }, 2000);
+                    }
+  
+                    contributionsArray.push(['Users'].concat(usersList));
+                    // Pushing contributions data
+                    for (week in chartData) {
+                        dataArray = [week];
+                        for (user in chartData[week]) {
+                            dataArray.push(
+                                chartData[week][user]);
+                        }
+                        contributionsArray.push(
+                                dataArray);
+                    }
+                    var data = google.visualization.arrayToDataTable(contributionsArray);
+
+                    var options = {
+                        'title': 'Contribution Timeline in {{drive_name}}',
+                        'height': 350,
+                        'backgroundColor': {
+                            'fill': '#FFFAF0',
+                            'fillopacity': 0.5
+                        },
+                        'legend': { 
+                            'position': 'top', 
+                            'maxLines': 2 
+                        },
+                        'bar': { 
+                            'groupWidth': '75%' 
+                        },
+                        'isStacked': true,
+                        'vAxis': {
+                            'minValue': 0
+                        }
+                    };
+
+                    // Display the chart inside the <div> element with id="maintimeline"
+                    var chart = new google.visualization.ColumnChart(document.getElementById('maintimeline'));
                     chart.draw(data, options);
                 }
             </script>
@@ -122,18 +174,19 @@
                     <th>Author</th>
                     <th>Revision Commits</th>
                     <th>% of Contributions</th>
-                <!-- Adding table elements dynamically -->
+                    <!-- Adding table elements dynamically -->
                 </tr>
                 % for (user, contribution), (user, percent) in zip(contributions.items(), contributions_percent.items()):
                 <tr>
                     <td>{{user}}</td>
                     <td>{{contribution}}</td>
                     <td>{{percent}}</td>
-                <tr>
+                    <tr>
                 % end
             </table>
 
         </div>
+
     </div>
 
     <!-- Javascript files below: -->
@@ -162,7 +215,7 @@
             } else if ((startDate < startDateObj.min) || (endDate < endDateObj.min)) {
                 alert("Invalid date earlier than " + startDateObj.min)
             } else {
-            window.location.href = "/timeContribution/" + startDate + "/" + endDate + "/" + drive;
+                window.location.href = "/timeContribution/" + startDate + "/" + endDate + "/" + drive;
             }
 
         }
