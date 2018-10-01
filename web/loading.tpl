@@ -15,9 +15,13 @@
     <div>
         <header>
             <div id="mainPageHeader">
-                Loading Team Drive Insight
+                loading team drive insight... 
             </div>
         </header>
+
+        <div id="catgif">
+            <img src="../static/runcat2.gif">
+        </div>
 
         <div class="loading">
             <div class="loading-bar"></div>

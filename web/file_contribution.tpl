@@ -23,7 +23,13 @@
             </div>
         </header>
 
-        <label for="DrawerMenuTrigger" class="OpenMenuButton">CLICK FOR MENU</label>
+
+        <div id="MenuButton">
+            <label for="DrawerMenuTrigger">
+                <img src="../static/tab.png">
+            </label>
+        </div>
+        
         <input type="checkbox" id="DrawerMenuTrigger" hidden>
         <aside class="DrawerMenu">
 
