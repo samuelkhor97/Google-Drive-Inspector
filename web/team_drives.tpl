@@ -13,7 +13,7 @@
     <link rel="apple-touch-icon-precomposed" href="images/icon.png" />
 </head>
 
-<body id="mainPageBackground" background="static/Background_for_all.jpg">
+<body id="mainPageBackground" background="static/bg6.jpg">
     <div>
         <header>
             <div id="mainPageHeader">
@@ -24,23 +24,19 @@
 
     </header>
 
-    <div id="allGroups">ALL TEAM DRIVES</div>
+    <div id="allGroups">MY TEAM DRIVES</div>
 
     % for drive_name in drive_ids:
     <!-- href='/loading/<team_drive_id>' -->
-    <a href={{drive_ids[drive_name]}} class=buttonStyle>{{drive_name}}</a> 
+    <a href={{drive_ids[drive_name]}}>
+        <div class=buttonStyle>{{drive_name}}</div>
+    </a> 
     % end
 
     </div>
     <button id="exitButton1" class="mdl-button mdl-js-button mdl-button--fab mdl-js-ripple-effect mdl-button--colored" onclick="logoutPrompt()">
         <i class="material-icons">exit_to_app</i>
     </button>
-    <div>
-        <button id="homeButton1" class="mdl-button mdl-js-button mdl-button--fab mdl-js-ripple-effect mdl-button--colored" onclick="returnHome()">
-            <i class="material-icons">home</i>
-        </button>
-
-    </div>
 
     </div>
 

@@ -23,13 +23,18 @@
             </div>
         </header>
 
-        <label for="DrawerMenuTrigger" class="OpenMenuButton">CLICK FOR MENU</label>
+        <div id="MenuButton">
+            <label for="DrawerMenuTrigger">
+                <img src="../static/tab.png">
+            </label>
+        </div>
+
         <input type="checkbox" id="DrawerMenuTrigger" hidden>
         <aside class="DrawerMenu">
 
             <div class="MenuContainer">
                 <nav class="Menu">
-                    <h2 class="Menu__Title">M E N U</h2> 
+                    <h2 class="Menu__Title">F I L E S</h2> 
                     % for name in file_names_ids:
                         <a href={{file_names_ids[name]}}>File: {{name}}</a> 
                     % end
