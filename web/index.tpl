@@ -13,6 +13,9 @@
     </head>
     
     <body id="mainPageBackground" background="static/mainpage1.jpg">
+
+    <div class="page-wrap">
+
         <div>
             
             <div >
@@ -33,6 +36,8 @@
 
             </div>
         </div>
+
+    </div>
    
     </body>
 </html>
