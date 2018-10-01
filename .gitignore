@@ -1,5 +1,8 @@
 src/.idea/
 src/__pycache__/
+src/.DS_Store
+web/__pycache__/
+web/.DS_Store/
 .idea/
 src/token.json
-venv/*
+.DS_Store/
