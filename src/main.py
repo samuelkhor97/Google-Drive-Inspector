@@ -84,13 +84,15 @@ def login_return():
     """
     Url should only be called by google auth side (no manual navigation)
     """
-    global flow
+    if request.query.error == 'access_denied': # handles auth error (user cancellation/auth fail)
+        return redirect('/') # redirect back to home page (index)
+    global flow # assume auth is success after this line (code returned correctly)
     code = request.query.code
-    creds = flow.step2_exchange(code)
-    del flow
-    file.Storage('token.json').put(creds)
+    creds = flow.step2_exchange(code) 
+    del flow # garbage collection
+    file.Storage('token.json').put(creds)  # store authorization into token file to ease subsequent usage (saved unless logged out)
     global service
-    service = build('drive', 'v3', http=creds.authorize(Http()))
+    service = build('drive', 'v3', http=creds.authorize(Http())) # build service using the authorized info
     return redirect('/team_drives')
 
 
