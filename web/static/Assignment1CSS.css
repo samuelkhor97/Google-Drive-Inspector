@@ -53,13 +53,12 @@ body {
   align-items: center;
 
 }
-
 .btn-wrapper {
   width: 200px;
   height: 50px;
   position: absolute;
-  left: 600px;
-  top: 280px;
+  left: 39em;
+  top: 15em;
   margin: 40px auto 0;
 }
 .btn-wrapper:hover .btn-inner {
