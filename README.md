@@ -12,7 +12,7 @@ statistics with visualizations. It is created specifically for markers' (lecture
 ## Developers' Dependencies Installation:  
 Use `pip install bottle google-api-python-client oauth2client` to get:  
 - bottle: the Python webserver framework  
-- the rest: required for Google Drive API)
+- the rest: required for Google Drive API
   
 `bottle: the micro web framework`  
 This will be the bridge/connector we use to link frontend UI to backend python, it will  
@@ -25,9 +25,10 @@ This will be how our web app handles login of users. They will be prompted to lo
 their Google Drive account to access the team drives in which they are the drive members.  
   
 ## Developers Usage  
-`startserver.bat` will run the `main.py` which spawn a server instance on `localhost:7878` and open that page.
-**To work on it**
-Page to be viewed directly at *.tpl. (See index.tpl for example), static file should be put under `web/static/` and access through `/static/<filename>`
+`startserver.bat` will run the `main.py` which spawn a server instance on `localhost:7878` and open that page.  
+**To work on it**  
+Page to be viewed directly at *.tpl* (See index.tpl for example)  
+Static file should be put under `web/static/` and access through `/static/<filename>`
   
 ## Directory Guide
 
