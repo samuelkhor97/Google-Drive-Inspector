@@ -32,19 +32,31 @@ current_drive_id = None
 flow = None
 port = 7878
 
+"""
+URL routing and handler for bottle framework
+"""
 
 @route("/static/<filepath>")
+# Handles static files request (mainly css files)
 def css(filepath):
     return static_file(filepath, root=viewpath + "/static/")
 
 
 @route('/')
+# Handles index page (main landing page)
 def index():
     return template('index')
 
 
 @route('/login')
+# Handles the login page
 def login():
+    """
+    Check token status.  If no token exists, redirect user to google consent screen and
+    perform first half of authorization process (redirect out to google), otherwise
+    initialize API using existing token.  Second half of the authorization process 
+    (redirect back) is routed back to '/login/return' and handled by respective handler.
+    """
     # If modifying these scopes, delete the file token.json.
     SCOPES = 'https://www.googleapis.com/auth/drive.readonly'
 
@@ -67,18 +79,25 @@ def login():
 
 
 @route('/login/return')
+# Handles second part of the authorization process.
 def login_return():
-    global flow
+    """
+    Url should only be called by google auth side (no manual navigation)
+    """
+    if request.query.error == 'access_denied': # handles auth error (user cancellation/auth fail)
+        return redirect('/') # redirect back to home page (index)
+    global flow # assume auth is success after this line (code returned correctly)
     code = request.query.code
-    creds = flow.step2_exchange(code)
-    del flow
-    file.Storage('token.json').put(creds)
+    creds = flow.step2_exchange(code) 
+    del flow # garbage collection
+    file.Storage('token.json').put(creds)  # store authorization into token file to ease subsequent usage (saved unless logged out)
     global service
-    service = build('drive', 'v3', http=creds.authorize(Http()))
+    service = build('drive', 'v3', http=creds.authorize(Http())) # build service using the authorized info
     return redirect('/team_drives')
 
 
 @route('/team_drives')
+# List team drives the authenticated user has access to
 def list_team_drives():
     # Reinitialize the global variables to default
     global file_revisions
@@ -103,12 +122,14 @@ def load_file_revisions(team_drive_id, service):
 
 
 @route('/isready')
+# Async status indicator for long operation (fetching file revisions)
 def isready():
     # Check whether the file_revisions are loaded
     return '1' if file_revisions != None else '0'
 
 
 @route('/loading/<team_drive_id>')
+# The loading page to be shown while fetching data
 def loading(team_drive_id):
     # Go to loading page while file_revisions are being fetched
     thr = Thread(target=load_file_revisions, args=[team_drive_id, service])
@@ -120,6 +141,7 @@ def loading(team_drive_id):
 
 def get_file_names_ids(team_drive_id):
     """
+    Helper function used to get files by team drive ID
     @:return file_names_ids_dict: (dict) {key:file_name(string), 
     value:/file_contribution/file_id, key:...}
     """
@@ -134,6 +156,7 @@ def get_file_names_ids(team_drive_id):
 
 
 @route('/team_drive_contributions/<team_drive_id>')
+# Show overview of contributions breakdown
 def team_contributions(team_drive_id):
     global file_names_ids_dict
     file_names_ids_dict = get_file_names_ids(team_drive_id)
@@ -160,6 +183,7 @@ def team_contributions(team_drive_id):
 
 
 @route('/file_contribution/<file_id>')
+# Show detailed contribution info for single file (given the file id)
 def file_contribution(file_id):
     # Initialize D_Parser class to calculate individual file contributions
     dparser = D_Parser(file_revisions)
@@ -182,6 +206,7 @@ def file_contribution(file_id):
 
 
 @route('/timeContribution/<startDate>/<endDate>/<drive_name>')
+# Get contribution info within a selected timeframe
 def timeframe_contribution(startDate, endDate, drive_name):
     # Initialize D_Parser class to calculate overall drive contributions
     # within a timeframe set by user
@@ -201,6 +226,7 @@ def timeframe_contribution(startDate, endDate, drive_name):
 
 
 @route('/logout')
+# Handles logout process
 def logout():
     # Reinitialize the global variables to initial states and
     # remove the access token from device before logging out
@@ -213,6 +239,7 @@ def logout():
 
     os.remove('token.json')
     return redirect('/')
+
 
 if __name__ == "__main__":
     # Open up a default browser tab for the login page
