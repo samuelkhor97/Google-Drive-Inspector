@@ -25,7 +25,7 @@
 
         <div id="MenuButton">
             <label for="DrawerMenuTrigger">
-                <img src="../static/new-tab.png">
+                <img src="../static/new-tab.png" style="cursor: pointer;">
             </label>
         </div>
 
@@ -66,135 +66,134 @@
             <button id="exitButton" class="mdl-button mdl-js-button mdl-button--fab mdl-js-ripple-effect mdl-button--colored" onclick="logoutPrompt()">
                 <i class="material-icons">exit_to_app</i>
             </button>
+        </div>
 
+        <div id="charts-container">
             <div id="mainpiechart"></div>
+
             <div id="maintimeline"></div>
 
-            <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
-
-            <script type="text/javascript">
-                // Check if the obj is empty
-                function isEmpty(obj) {
-                    for (var key in obj) {
-                        if (obj.hasOwnProperty(key)) {
-                            return false;
-                        }
-                    }
-                    return true;
-                }
-                // Load google charts
-                google.charts.load('current', {
-                    'packages': ['corechart']
-                });
-                // Draw the Pie chart of contributions onLoad
-                google.charts.setOnLoadCallback(drawChart);
-                // Draw the Timeline of contributions onLoad
-                google.charts.setOnLoadCallback(drawTimeline);
-
-                // Draw the Pie chart and set the chart values
-                function drawChart() {
-                    let contributionsArray = [
-                    ['Author', 'Revision Commits']
-                    ];
-                    // Load contributions data passed into template
-                    chartData = {{!contributions}};
-                    if (isEmpty(chartData)) {
-                        setTimeout(function() {
-                            alert("No data to be showned.");
-                        }, 2000);
-                    }
-                    for (user in chartData) {
-                        contributionsArray.push([user, chartData[user]]);
-                    }
-                    var data = google.visualization.arrayToDataTable(contributionsArray);
-
-                    var options = {
-                        'title': 'Overall contribution, by author, in {{drive_name}}',
-                        'width': 550,
-                        'height': 300,
-                        'backgroundColor': {
-                            'fill': '#FFFAF0',
-                            'fillopacity': 0.5
-                        }
-                    };
-                    // Display the chart inside the <div> element with id="mainpiechart"
-                    var chart = new google.visualization.PieChart(document.getElementById('mainpiechart'));
-                    chart.draw(data, options);
-                }
-
-                // Draw the Timeline and set the values
-                function drawTimeline() {
-                    // Load contributions data passed into template
-                    let chartData = {{!weekly_contributions}};
-                    let usersList = {{!users_list}};
-                    let contributionsArray = [];
-
-                    if (isEmpty(chartData)) {
-                        setTimeout(function() {
-                            alert("No data to be showned.");
-                        }, 2000);
-                    }
-  
-                    contributionsArray.push(['Users'].concat(usersList));
-                    // Pushing contributions data
-                    for (week in chartData) {
-                        dataArray = [week];
-                        for (user in chartData[week]) {
-                            dataArray.push(
-                                chartData[week][user]);
-                        }
-                        contributionsArray.push(
-                                dataArray);
-                    }
-                    var data = google.visualization.arrayToDataTable(contributionsArray);
-
-                    var options = {
-                        'title': 'Contribution Timeline in {{drive_name}}',
-                        'height': 350,
-                        'backgroundColor': {
-                            'fill': '#FFFAF0',
-                            'fillopacity': 0.5
-                        },
-                        'legend': { 
-                            'position': 'top', 
-                            'maxLines': 2 
-                        },
-                        'bar': { 
-                            'groupWidth': '75%' 
-                        },
-                        'isStacked': true,
-                        'vAxis': {
-                            'minValue': 0
-                        }
-                    };
-
-                    // Display the chart inside the <div> element with id="maintimeline"
-                    var chart = new google.visualization.ColumnChart(document.getElementById('maintimeline'));
-                    chart.draw(data, options);
-                }
-            </script>
-
-            <table class="maintable">
-                <tr>
-                    <th>Author</th>
-                    <th>Revision Commits</th>
-                    <th>% of Contributions</th>
-                    <!-- Adding table elements dynamically -->
-                </tr>
-                % for (user, contribution), (user, percent) in zip(contributions.items(), contributions_percent.items()):
-                <tr>
-                    <td>{{user}}</td>
-                    <td>{{contribution}}</td>
-                    <td>{{percent}}</td>
+            <div id="maintable">
+                <table class="maintable">
                     <tr>
-                % end
-            </table>
+                        <th>Author</th>
+                        <th>Revision Commits</th>
+                        <th>% of Contributions</th>
+                        <!-- Adding table elements dynamically -->
+                    </tr>
+                    % for (user, contribution), (user, percent) in zip(contributions.items(), contributions_percent.items()):
+                    <tr>
+                        <td>{{user}}</td>
+                        <td>{{contribution}}</td>
+                        <td>{{percent}}</td>
+                    </tr>
+                    % end
+                </table>
+            </div>  
 
         </div>
 
     </div>
 
     <!-- Javascript files below: -->
+    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+
+    <script type="text/javascript">
+        // Check if the obj is empty
+        function isEmpty(obj) {
+            for (var key in obj) {
+                if (obj.hasOwnProperty(key)) {
+                    return false;
+                }
+            }
+            return true;
+        }
+        // Load google charts
+        google.charts.load('current', {
+            'packages': ['corechart']
+        });
+        // Draw the Pie chart of contributions onLoad
+        google.charts.setOnLoadCallback(drawChart);
+        // Draw the Timeline of contributions onLoad
+        google.charts.setOnLoadCallback(drawTimeline);
+
+        // Draw the Pie chart and set the chart values
+        function drawChart() {
+            let contributionsArray = [
+            ['Author', 'Revision Commits']
+            ];
+            // Load contributions data passed into template
+            chartData = {{!contributions}};
+            if (isEmpty(chartData)) {
+                setTimeout(function() {
+                    alert("No data to be showned.");
+                }, 2000);
+            }
+            for (user in chartData) {
+                contributionsArray.push([user, chartData[user]]);
+            }
+            var data = google.visualization.arrayToDataTable(contributionsArray);
+
+            var options = {
+                'title': 'Overall contribution, by author, in {{drive_name}}',
+                'width': 600,
+                'height': 350,
+                'backgroundColor':'transparent'
+            };
+            // Display the chart inside the <div> element with id="mainpiechart"
+            var chart = new google.visualization.PieChart(document.getElementById('mainpiechart'));
+            chart.draw(data, options);
+        }
+
+        // Draw the Timeline and set the values
+        function drawTimeline() {
+            // Load contributions data passed into template
+            let chartData = {{!weekly_contributions}};
+            let usersList = {{!users_list}};
+            let contributionsArray = [];
+
+            if (isEmpty(chartData)) {
+                setTimeout(function() {
+                    alert("No data to be showned.");
+                }, 2000);
+            }
+
+            contributionsArray.push(['Users'].concat(usersList));
+            // Pushing contributions data
+            for (week in chartData) {
+                dataArray = [week];
+                for (user in chartData[week]) {
+                    dataArray.push(
+                        chartData[week][user]);
+                }
+                contributionsArray.push(
+                        dataArray);
+            }
+            var data = google.visualization.arrayToDataTable(contributionsArray);
+
+            var options = {
+                'title': 'Contribution Timeline in {{drive_name}}',
+                'height': 350,
+                'width': 600,
+                'backgroundColor':'transparent',
+                'legend': { 
+                    'position': 'top', 
+                    'maxLines': 2 
+                },
+                'bar': { 
+                    'groupWidth': '75%' 
+                },
+                'isStacked': true,
+                'vAxis': {
+                    'minValue': 0
+                }
+            };
+
+            // Display the chart inside the <div> element with id="maintimeline"
+            var chart = new google.visualization.ColumnChart(document.getElementById('maintimeline'));
+            chart.draw(data, options);
+        }
+    </script>
     <script>
         drive = '{{drive_name}}';
 

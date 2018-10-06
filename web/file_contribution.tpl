@@ -23,10 +23,9 @@
             </div>
         </header>
 
-
         <div id="MenuButton">
             <label for="DrawerMenuTrigger">
-                <img src="../static/tab.png">
+                <img src="../static/new-tab.png" style="cursor: pointer;">
             </label>
         </div>
         
@@ -35,7 +34,7 @@
 
             <div class="MenuContainer">
                 <nav class="Menu">
-                    <h2 class="Menu__Title">M E N U</h2>
+                    <h2 class="Menu__Title">F I L E S</h2>
                     % for name in file_names_ids:
                         <a href={{file_names_ids[name]}}>File: {{name}}</a>
                     % end
@@ -55,14 +54,41 @@
                 <i class="material-icons">arrow_back</i>
             </button>
 
-            <button id="exitButton2" class="mdl-button mdl-js-button mdl-button--fab mdl-js-ripple-effect mdl-button--colored" onclick="logoutPrompt()">
+            <button id="exitButton" class="mdl-button mdl-js-button mdl-button--fab mdl-js-ripple-effect mdl-button--colored" onclick="logoutPrompt()">
                 <i class="material-icons">exit_to_app</i>
             </button>
 
+        </div>
+
+        <div id="charts-container">
             <div id="mainpiechart"></div>
+
             <div id="maintimeline"></div>
 
-            <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+
+            <div id="maintable">
+                <table class="maintable">
+                    <tr>
+                        <th>Author</th>
+                        <th>Revision Commits</th>
+                        <th>% of Contributions</th>
+                        <!-- Adding table elements dynamically -->
+                    </tr>
+                        % for (user, file_contribution), (user, percent) in zip(contribution.items(), contribution_percent.items()):
+                        <tr>
+                            <td>{{user}}</td>
+                            <td>{{file_contribution}}</td>
+                            <td>{{percent}}</td>
+                        </tr>
+                        % end
+                </table>
+            </div>
+
+        </div>
+    </div>
+
+    <!-- Javascript files below: -->
+                <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
 
             <script type="text/javascript">
                 // Load google charts
@@ -88,12 +114,9 @@
 
                     var options = {
                         'title': 'Overall contribution, by author, in {{file_name}}',
-                        'width': 550,
-                        'height': 300,
-                        'backgroundColor': {
-                            'fill': '#FFFAF0',
-                            'fillopacity': 0.5
-                        }
+                        'width': 600,
+                        'height': 350,
+                        'backgroundColor':'transparent'
                     };
 
                     // Display the chart inside the <div> element with id="mainpiechart"
@@ -124,10 +147,8 @@
                     var options = {
                         'title': 'File Contribution Timeline in {{file_name}}',
                         'height': 350,
-                        'backgroundColor': {
-                            'fill': '#FFFAF0',
-                            'fillopacity': 0.5
-                        },
+                        'width': 600,
+                        'backgroundColor':'transparent',
                         'legend': { 
                             'position': 'top', 
                             'maxLines': 2 
@@ -147,26 +168,6 @@
                 }
             </script>
 
-            <table class="maintable">
-                <tr>
-                    <th>Author</th>
-                    <th>Revision Commits</th>
-                    <th>% of Contributions</th>
-                <!-- Adding table elements dynamically -->
-                </tr>
-                % for (user, file_contribution), (user, percent) in zip(contribution.items(), contribution_percent.items()):
-                <tr>
-                    <td>{{user}}</td>
-                    <td>{{file_contribution}}</td>
-                    <td>{{percent}}</td>
-                <tr>
-                % end
-            </table>
-
-        </div>
-    </div>
-
-    <!-- Javascript files below: -->
     <script>
         function returnHome() {
             window.location.href = "/team_drives"
