@@ -181,7 +181,8 @@ input[type=password]{
 }
 
 .buttonStyle
-{
+{ 
+  opacity:0.9;
   position:relative;
   text-align: center;
   top:200px;
