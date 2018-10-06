@@ -271,9 +271,10 @@ input[type=password]{
 }
 
 #exitButton
-{
-    left:625px;
-    top :-40px;
+{   
+    position: fixed;
+    right:10px;
+    top :10px;
     margin-top: 5px;
     display: block;
     background-color:black;
@@ -281,8 +282,8 @@ input[type=password]{
 
 #exitButton1
 {
-    left:625px;
-    top :0px;
+    left:2%;
+    top :2%;
     margin-top: 5px;
     display: block;
     background-color:black;
@@ -297,14 +298,6 @@ input[type=password]{
     background-color:black;
 }
 
-#deleteButton
-{
-    right:-525px;
-    top : -140px;
-    margin-top: 5px;
-    display: block;
-    background-color:black;
-}
 #mainpiechart
 {
     position: absolute;
@@ -378,9 +371,9 @@ input[type=password]{
 
 #MenuButton
 {
-  position: relative;
-  top: 500px;
-  left:-225px;
+  position: fixed;
+  top: 35%;
+  left:0px;
 }
 
 .OpenMenuButton {
@@ -534,9 +527,10 @@ label {
 }
 
 #homeButton
-{
-    left:-600px;
-    top :20px;
+{   
+    position: fixed;
+    left:2%;
+    top :2%;
     margin-top: 5px;
     display: block;
     background-color:black;

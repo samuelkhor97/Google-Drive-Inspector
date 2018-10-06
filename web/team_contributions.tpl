@@ -25,7 +25,7 @@
 
         <div id="MenuButton">
             <label for="DrawerMenuTrigger">
-                <img src="../static/tab.png">
+                <img src="../static/new-tab.png">
             </label>
         </div>
 
