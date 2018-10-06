@@ -20,11 +20,12 @@
     font-size: 36px;
     text-align:center;
 }
+
 #mainPageHeader
 {
     font-weight:600;
     font-size:20px;
-    color: aliceblue;
+    color: #5b678c;
     position:relative;
     text-align: center;
     top:20px;
@@ -125,15 +126,6 @@ body {
     
 }
 
-.emailPassword
-{
-    font-size:25px;
-    color: aqua;
-    position:absolute;
-    
-    left:575px;
-    top:250px;
-}
 input[type=text]{
     position:absolute;
     left:30px;
@@ -170,36 +162,14 @@ input[type=password]{
 /*-----------------------page2---------------------------------*/
 #allGroups
 {
-    font-weight:300;
+    font-weight:500;
     font-size:30px;
-    color:white;
+    color:black;
     position:relative;
     text-align: center;
-    top:100px;
+    top:65px;
     left:0px;
 }
-/*.Group
-{
-    position:relative;
-    text-align: center;
-    top:250px;
-    left:300px;
-    width:200px;
-    height:200px;
-    font-size: 25px;
-    font-family: 'Bookman',serif;
-    color:black;
-}
-*/
-#backButton3
-{
-    left:625px;
-    top :-40px;
-    margin-top: 5px;
-    display: block;
-    background-color:black;
-}
-
 
 #addPathButton
 {
@@ -224,7 +194,6 @@ input[type=password]{
   border-right: 1px solid #333333;
   border-bottom: 1px solid #333333;
   border-left: 1px solid #CCCCCC;"
-  position:relative;
   font-size: 20px;
   font-weight: 10px;
   font-family: "Georgia",serif;
@@ -298,75 +267,29 @@ input[type=password]{
     background-color:black;
 }
 
+#charts-container {
+  text-align: center;
+}
+
 #mainpiechart
 {
-    position: absolute;
-    background-color:darkslategrey;
-    position:absolute;
-    left:450px;
-    top:300px;
+    padding-top: 10em;
+    padding-bottom: 5em;
+    display: inline-block;
 }
+
 #maintimeline
 {
-    position: absolute;
-    background-color:darkslategrey;
-    position:absolute;
-    left:525px;
-    top:800px;
+    padding-bottom: 5em;
+    display: inline-block;
 }
 
-.maintable {
-    position: absolute;
+.maintable 
+{
+    padding-bottom: 5em;
     font-family: arial, sans-serif;
     border-collapse: collapse;
-    position:relative;
-    left:550px;
-    top:250px;
-}
-.File1 
-{
-    position:relative;
-    text-align: center;
-    top:150px;
-    left:300px;
-    width:200px;
-    height:60px;
-    font-size: 25px;
-    color:floralwhite;
-    background-color:darkslategrey;
-}
-.File2
-{
-    position:relative;
-    text-align: center;
-    top:150px;
-    left:400px;
-    width:200px;
-    height:60px;
-    font-size: 25px;
-    color:floralwhite;
-    background-color:darkslategrey;
-}
-.File3 
-{
-    position:relative;
-    text-align: center;
-    top:150px;
-    left:500px;
-    width:200px;
-    height:60px;
-    font-size: 25px;
-    color:floralwhite;
-    background-color:darkslategrey;
-}
-
-#backButton2
-{
-    left:-665px;
-    top :-100px;
-    margin-top: 5px;
-    display: block;
-    background-color:black;
+    display: inline-block;
 }
 
 #MenuButton
@@ -536,48 +459,16 @@ label {
     background-color:black;
 }
 
-#homeButton1
-{
-    left:-600px;
-    top :-60px;
-    margin-top: 5px;
-    display: block;
-    background-color:black;
-}
-
 #backButton
-{
-    left:-525px;
-    top :-40px;
+{   
+    position: fixed;
+    left:8%;
+    top :2%;
     margin-top: 5px;
     display: block;
     background-color:black;
 }
-#mainPageTopic
-{
-    font-weight:600;
-    font-size:30px;
-    color:black;
-    position:relative;
-    text-align: center;
-    top:65px;
-    left:-400px;
-}
 
-.table1 {
-    font-family: arial, sans-serif;
-    border-collapse: collapse;
-    position:absolute;
-    left:300px;
-    top:175px;
-}
-.table2 {
-    font-family: arial, sans-serif;
-    border-collapse: collapse;
-    position:absolute;
-    left:300px;
-    top:375px;
-}
 td, th {
     border: 1px solid black;
     text-align: left;
@@ -586,19 +477,6 @@ td, th {
 
 tr:nth-child(even) {
     background-color: #dddddd;
-}
-
-#piechart1
-{
-    position:absolute;
-    left:800px;
-    top:90px;
-}
-#piechart2
-{
-    position:absolute;
-    left:800px;
-    top:450px;
 }
 
 /*-----------------loading page---------------------------------*/
@@ -622,19 +500,19 @@ tr:nth-child(even) {
   animation: loading 1s ease-in-out infinite;
 }
 .loading-bar:nth-child(1) {
-  background-color: #FFFAFA;
+  background-color: #3498db;
   animation-delay: 0;
 }
 .loading-bar:nth-child(2) {
-  background-color: #FFDAB9;
+  background-color: #c0392b;
   animation-delay: 0.09s;
 }
 .loading-bar:nth-child(3) {
-  background-color: #FFFACD;
+  background-color: #f1c40f;
   animation-delay: .18s;
 }
 .loading-bar:nth-child(4) {
-  background-color: #FFE4E1;
+  background-color: #27ae60;
   animation-delay: .27s;
 }
 
