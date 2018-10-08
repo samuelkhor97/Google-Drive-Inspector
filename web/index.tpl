@@ -10,6 +10,16 @@
         <meta name="mobile-web-app-capable" content="yes" />
         <link rel="shortcut icon" sizes="196x196" href="images/icon.png"/>
         <link rel="apple-touch-icon-precomposed" href="images/icon.png"/>
+        <style type="text/css">
+        	html 
+        	{
+				width: 100%;
+				height: 100%;
+				clip: auto;
+				position: absolute;
+				overflow: hidden;
+			}
+        </style>
     </head>
     
     <body id="mainPageBackground" background="static/mainpage1.jpg">
