@@ -6,3 +6,6 @@ web/.DS_Store/
 .idea/
 src/token.json
 .DS_Store/
+
+shell.bat
+venv/
