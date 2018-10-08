@@ -1,6 +1,6 @@
 ## Deployment  
 
-We use the PyInstaller module to 'freeze' our Python program into stand-alone  
+We use the `PyInstaller` module to 'freeze' our Python program into stand-alone  
 executable. Currently, we plan to only deliver executable for Windows platform.  
 Other platforms will be considered in the future.  
   
