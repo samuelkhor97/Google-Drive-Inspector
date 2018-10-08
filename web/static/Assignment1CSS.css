@@ -3,14 +3,6 @@
   margin: 0 auto;
 }
 
-#mainPageBackground
-{
-    background-attachment: fixed;
-    background-repeat: no-repeat;
-    background-size:cover;
-    background-position: center bottom;
-
-}
 .style
 {
     position:relative;
@@ -21,14 +13,25 @@
     text-align:center;
 }
 
+#mainPageBackground
+{
+    background-attachment: fixed;
+    background-repeat: no-repeat;
+    background-size:cover;
+    background-position: center bottom;
+
+}
+
 #mainPageHeader
 {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 5vh;
     font-weight:600;
     font-size:20px;
     color: #5b678c;
-    position:relative;
     text-align: center;
-    top:20px;
     font-family: 'Georgia', serif;
 }
 
@@ -162,13 +165,12 @@ input[type=password]{
 /*-----------------------page2---------------------------------*/
 #allGroups
 {
-    font-weight:500;
-    font-size:30px;
-    color:black;
-    position:relative;
-    text-align: center;
-    top:65px;
-    left:0px;
+  display: block;
+  font-weight:500;
+  font-size:30px;
+  color:black;
+  text-align: center;
+  margin-top: 120px;
 }
 
 #addPathButton
@@ -179,54 +181,7 @@ input[type=password]{
     display: block;
     background-color:azure;
 }
-
-.buttonStyle
-{ 
-  opacity:0.9;
-  position:relative;
-  text-align: center;
-  top:200px;
-  left:150px;
-  width:300px;
-  height:50px;
-  background-color:white;
-  color:grey;
-  border-top: 1px solid #CCCCCC;
-  border-right: 1px solid #333333;
-  border-bottom: 1px solid #333333;
-  border-left: 1px solid #CCCCCC;"
-  font-size: 20px;
-  font-weight: 10px;
-  font-family: "Georgia",serif;
-  padding: 10px 6px 2px 6px;
-  cursor:pointer;
-  transition:800ms ease all;
-  outline:none;
-}
-.buttonStyle:hover{
-  background:#fff;
-  color:black;
-}
-.buttonStyle:before,.buttonStyle:after{
-  content:'';
-  position:absolute;
-  top:0;
-  right:0;
-  height:2px;
-  width:0;
-  background-color:black;
-  transition:400ms ease all;
-}
-.buttonStyle:after{
-  right:inherit;
-  top:60px;
-  left:0;
-  bottom:0;
-}
-.buttonStyle:hover:before,.buttonStyle:hover:after{
-  width:100%;
-  transition:800ms ease all;
-}
+ 
 /*-----------------page3--------------------------------*/
 #projectName
 {
@@ -478,53 +433,4 @@ td, th {
 
 tr:nth-child(even) {
     background-color: #dddddd;
-}
-
-/*-----------------loading page---------------------------------*/
-#catgif
-{
-  position: absolute;
-  top:0px;
-  left:450px;
-}
-
-.loading {
-  position: absolute;
-  top: 50%;
-  left: 47.5%;
-}
-.loading-bar {
-  display: inline-block;
-  width: 10px;
-  height: 35px;
-  border-radius: 4px;
-  animation: loading 1s ease-in-out infinite;
-}
-.loading-bar:nth-child(1) {
-  background-color: #3498db;
-  animation-delay: 0;
-}
-.loading-bar:nth-child(2) {
-  background-color: #c0392b;
-  animation-delay: 0.09s;
-}
-.loading-bar:nth-child(3) {
-  background-color: #f1c40f;
-  animation-delay: .18s;
-}
-.loading-bar:nth-child(4) {
-  background-color: #27ae60;
-  animation-delay: .27s;
-}
-
-@keyframes loading {
-  0% {
-    transform: scale(1);
-  }
-  20% {
-    transform: scale(1, 2.2);
-  }
-  40% {
-    transform: scale(1);
-  }
 }
