@@ -1,0 +1,26 @@
+header
+{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 5vh;
+    font-weight:600;
+    font-size:20px;
+    color: #5b678c;
+    text-align: center;
+    font-family: 'Georgia', serif;
+}
+
+body
+{
+    background-attachment: fixed;
+    background-repeat: no-repeat;
+    background-size:cover;
+    background-position: center bottom;
+
+}
+
+html, body {
+    margin: 0px;
+    padding: 0px;
+}

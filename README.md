@@ -35,6 +35,7 @@ Static file should be put under `web/static/` and access through `/static/<filen
 - Project_Docs: Assignment 1 deliverables (PMP, AoA, RR, Retrospectives, Burndown Chart)
 - src: Source code
 - web: Web UI  
+- dist: distribution package in .zip, together with uncompressed folders
   
 ## Clients Usage  
-Run `main.exe` and a new tab with our web app loaded will be opened in clients' default browser.
+Run `bin\driveinspector.exe` and a new tab with our web app loaded will be opened in clients' default browser.
