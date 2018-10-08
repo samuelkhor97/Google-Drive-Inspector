@@ -57,3 +57,13 @@ a:hover:before,a:hover:after{
   width:100%;
   transition:800ms ease all;
 }
+
+#exitButton
+{   
+    position: fixed;
+    right:10px;
+    top :10px;
+    margin-top: 5px;
+    display: block;
+    background-color:black;
+}
