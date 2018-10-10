@@ -43,4 +43,4 @@ Static file should be put under `web/static/` and access through `/static/<filen
 - dist: distribution package in .zip, together with uncompressed folders
   
 ## Clients Usage  
-Run `bin\driveinspector.exe` and a new tab with our web app loaded will be opened in clients' default browser.
+Run `dist\bin\driveinspector.exe` and a new tab with our web app loaded will be opened in clients' default browser.
