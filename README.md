@@ -3,7 +3,8 @@
 Drive Inspector is a web app to [Google Drive](https://www.google.com/drive/) - the file storage and synchronization service  
 developed by Google - that let you store and work collaboratively with team members.  
 This extension will let users to have insight on every team drive contributions  
-statistics with visualizations. It is created specifically for markers' (lecturers, teachers etc.) use.  
+statistics with visualizations. It is created specifically for markers' (lecturers, teachers with students' team drives' access) use.  
+*Currently only designated for Google Docs and Google Sheets.*  
   
 ## Requirements  
 - Python 3.x
